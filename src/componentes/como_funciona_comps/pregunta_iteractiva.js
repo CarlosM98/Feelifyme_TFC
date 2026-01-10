@@ -1,7 +1,8 @@
 import { useState } from "react";
-
+import "./pregunta_iteractiva.css"
 const Emocion = () => {
     const [mensaje, setMensaje] = useState("");
+    const [emocionSeleccionada, setEmocionSeleccionada] = useState(null)
 
     const mensajes = {
         bien: "Nos alegra que estés bien pero siempre puedes darle una oportunidad a FeelifyMe.",
@@ -12,6 +13,7 @@ const Emocion = () => {
     const emociones = ['bien', 'neutro', 'mal']
 
     const mostrarMensaje = (emocion) => {
+        setEmocionSeleccionada(emocion)
         setMensaje(mensajes[emocion])
     }
 
@@ -20,7 +22,7 @@ const Emocion = () => {
         <h3>¿Cómo te sientes hoy?</h3>
         <div className="botones">
             {emociones.map((emocion) => (
-            <button key={emocion} onClick={() => mostrarMensaje(emocion)}>
+            <button key={emocion} onClick={() => mostrarMensaje(emocion)} className={emocion === emocionSeleccionada ? `btn-${emocion}` : 'btn-base'}>
                 {emocion} 
             </button>
             ))}

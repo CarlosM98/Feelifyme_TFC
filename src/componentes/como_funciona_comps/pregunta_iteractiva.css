@@ -1,0 +1,62 @@
+/*css a modificar esto es css base*/
+
+.estado-emocional {
+    max-width: 600px;
+    width: 90%;
+    margin: auto;
+    text-align: center;
+}
+
+
+.pregunta-h1{
+    text-align: center;
+}
+
+.estado-emocional h3{
+    text-align: center;
+}
+
+.botones {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.botones button{
+    padding: 4px;
+    border-radius: 5px;
+}
+
+.estado-emocional p {
+    text-align: center;
+    margin: 0.5rem;
+}
+
+.btn-base {
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    border: none;
+    background-color: #ddd;
+    cursor: pointer;
+}
+
+.btn-base:hover{
+    transition: color 0.3s ease;
+    transform: scale(1.2);
+}
+
+/* Colores botones emoción */
+.btn-bien {
+    background-color: #8fd19e;
+}
+
+.btn-neutro {
+    background-color: #f2e6a7;
+}
+
+.btn-mal {
+    background-color: #e8a1a1;
+}
+
+
