@@ -59,17 +59,19 @@ class RegistroDiario(models.Model):
         User,
         on_delete=models.CASCADE, related_name='registros'
     )
-    fecha = models.DateTimeField()
+    fecha = models.DateField()
     notas = models.TextField(
         null=True, 
         blank=True,
-        verbose_name="Nota diaria",help_text="Escribe una reflexión o suceso del día"
+        verbose_name="Nota diaria",
+        help_text="Escribe una reflexión o suceso del día"
     )
     
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
     class Meta:
+        unique_together = (('usuario', 'fecha'),)
         ordering = ['-fecha']
         verbose_name = "Registro diario"
         verbose_name_plural = "Registros diarios"
@@ -91,12 +93,12 @@ class EmocionRegistrada(models.Model):
     )
 
     class Meta:
+        unique_together = (('registro', 'emocion'),)
         verbose_name = "Emoción registrada"
         verbose_name_plural = "Emociones registradas"
-        unique_together = ('registro', 'emocion')
 
     def __str__(self):
-        return f"{self.emocion.nombre} en registro {self.registro.id}"
+        return f"{self.emocion} → {self.registro.fecha.date()}"
 
 class Actividad(models.Model):
     nombre = models.CharField(
@@ -104,7 +106,7 @@ class Actividad(models.Model):
         unique=True
     ) 
     #a futuro añadir mais actividades e clasificar
-    # categoria = models.CharField(max_length=100) 
+    # categoria = models.CharField()  model novo?
 
     class Meta: 
         ordering = ['nombre'] 
@@ -125,9 +127,9 @@ class ActividadRealizada(models.Model):
     )
 
     class Meta:
+        unique_together = (('registro', 'actividad'),)
         verbose_name = "Actividad realizada"
         verbose_name_plural = "Actividades realizadas"
-        unique_together = ('registro', 'actividad')
 
     def __str__(self):
         return f"{self.actividad.nombre} en registro {self.registro.id}"
@@ -137,7 +139,7 @@ class Logro(models.Model):
         max_length=100, 
         unique=True
     ) 
-    descripcion = models.TextField(max_length=100) 
+    descripcion = models.TextField() 
     tipo = models.CharField(
         max_length=50, 
         blank=True, 
@@ -167,9 +169,44 @@ class LogroUsuario(models.Model):
     )
     fecha_obtenido = models.DateTimeField(auto_now_add=True)
     class Meta:
-        unique_together = ('usuario', 'logro')
+        unique_together = (('usuario', 'logro'),)
         ordering = ['usuario'] 
         verbose_name = "Logro usuario"
         verbose_name_plural = "Logros usuarios"
     def __str__(self): 
         return self.usuario.username
+
+class Recomendacion(models.Model):
+    titulo = models.CharField(
+        max_length=100, 
+        unique=True
+    ) 
+    descripcion = models.TextField() 
+    emociones = models.ManyToManyField(
+        Emocion,
+        through="RecomendacionEmocion",
+        related_name="recomendaciones"
+    )
+    def __str__(self): 
+        return self.titulo
+
+class RecomendacionEmocion(models.Model):
+    recomendacion = models.ForeignKey(
+        Recomendacion,
+        on_delete=models.CASCADE,
+        related_name='emociones_asociadas'
+    )
+
+    emocion = models.ForeignKey(
+        Emocion,
+        on_delete=models.CASCADE,
+        related_name='recomendaciones_relacionadas'
+    )
+
+    class Meta:
+        unique_together = (('recomendacion', 'emocion'),)
+        ordering = ['recomendacion'] 
+        verbose_name = "Relación recomendación-emoción"
+        verbose_name_plural = "Relaciones recomendación-emoción"
+    def __str__(self): 
+        return f"{self.recomendacion} → {self.emocion}"
