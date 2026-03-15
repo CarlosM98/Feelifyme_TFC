@@ -25,7 +25,7 @@ const Nav = () => {
                 </ul>
             </nav>
 
-            <Link to="/acceso" className="acceso-img">
+            <Link to="/login" className="acceso-img">
                 <img src={acceso} alt='acceso' />
             </Link>
         </>

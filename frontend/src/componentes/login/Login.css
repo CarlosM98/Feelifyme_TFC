@@ -1,0 +1,27 @@
+.form p, .form a{
+    font-size: 12px;
+}
+
+.form a:nth-of-type(1){
+    text-decoration: underline;
+}
+.form a:nth-of-type(2){
+    border: 1px solid #000000;
+    background-color: #f1f1f1;
+    text-align: center;
+    margin-bottom: 8px;
+}
+
+@media (min-width: 768px) {
+    .cont-main-login {
+        background: linear-gradient(to right, #fcfceb, #f5f5dc);
+        border-left: 4px solid #7aaedb;
+        border-radius: 10%;
+        display: flex;
+        flex-direction: column;
+        margin: 40px auto 0;
+        padding: 40px;
+        width: 40vw;
+    }
+
+}

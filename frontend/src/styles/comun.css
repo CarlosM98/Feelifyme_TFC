@@ -29,6 +29,44 @@ p, label, input, textarea {
     font-family: nunito-regular;
 }
 
+/* Formularios */
+.form {
+    display: flex;
+    flex-direction: column;
+    width: 90%;
+    margin: auto;
+}
+
+.conjunto {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 10px;
+}
+
+input, textarea {
+    padding: 3px;
+    margin-bottom: 10px;
+}
+
+button {
+    display: block;
+    margin-left: auto;
+    padding: 3px;
+}
+
+@media (min-width: 768px) {
+    input:focus, textarea:focus {
+        border: 2px solid #000;
+    }
+
+    input:hover, textarea:hover {
+        border: 2px solid #4481a4;
+    }
+
+    input, textarea {
+        transition: border 0.4s ease;
+    }
+}
 
 @font-face {
     font-family: "nunito-regular";

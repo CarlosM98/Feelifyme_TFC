@@ -14,6 +14,10 @@ import ComoFunciona from './pages/public/ComoFunciona';
 import Curiosidades from './pages/public/Curiosidades';
 import SobreNosotros from './pages/public/SobreNosotros';
 import Contacto from './pages/public/Contacto';
+import RegistroPage from './pages/public/RegistroPage';
+import LoginPage from './pages/public/LoginPage';
+import NotFoundPage from './pages/public/NotFoundPage';
+
 import PublicLayout from './layouts/PublicLayout';
 import LayoutApp from './layouts/LayoutApp';
 
@@ -32,10 +36,12 @@ function App() {
             <Route path="/como-funciona" element={<ComoFunciona />} />
             <Route path="/contacto" element={<Contacto />} />
             <Route path="/acceso" element={<Acceso />} />
+            <Route path="/registro" element={<RegistroPage />} />
+            <Route path="/login" element={<LoginPage />} />
           </Route>
 
         </Route>
-
+        <Route path='*' element={<NotFoundPage/>}/>
       </Routes>
         {/*menu privado mas adelante junto a back
         <Route path="/rueda-emociones" element={<Calendario />} />
