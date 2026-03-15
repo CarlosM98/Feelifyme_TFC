@@ -5,7 +5,7 @@ import Descubre from "../../componentes/inicio/descubre/Descubre";
 import Beneficios from "../../componentes/inicio/beneficios/Beneficios";
 
 
-function Inicio() {
+const Inicio = () => {
     useEffect(() => {
         document.title = 'Inicio'
     })
