@@ -24,6 +24,8 @@ import LayoutApp from './layouts/LayoutApp';
 
 function App() {
 
+  const [loggedIn, setLoggedIn] = useState(false);
+  
   return (
     <BrowserRouter>
       <Routes>
@@ -44,7 +46,7 @@ function App() {
         <Route path='*' element={<NotFoundPage/>}/>
       </Routes>
         {/*menu privado mas adelante junto a back
-        <Route path="/rueda-emociones" element={<Calendario />} />
+        <Route path="/calendario" element={<Calendario />} />
         <Route path="/estadisticas" element={<Estadisticas />} />
         <Route path="/recomendaciones" element={<Recomendaciones />} />
         <Route path="/logros" element={<Logros />} />*/}

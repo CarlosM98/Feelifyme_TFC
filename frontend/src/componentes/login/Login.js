@@ -1,23 +1,51 @@
 import { useState } from "react"
 import { Link } from "react-router-dom"
 import "./Login.css"
+import { useNavigate, useOutletContext } from "react-router-dom";
+import axios from "axios";
 
 const Login = () => {
+
+    const navigate = useNavigate();
 
     const [form, setForm] = useState({
         usuario: '',
         contrasenha: ''
+    })
+
+    const onChange = (e) => { 
+        setForm({ ...form, [e.target.name]: e.target.value 
+
         })
+    }
 
-        const onChange = (e) => { 
-            setForm({ ...form, [e.target.name]: e.target.value 
+    const [error, setError] = useState('')
 
-            })
+    const onSubmit = async (e) => { 
+        e.preventDefault()
+        if (!form.usuario || !form.contrasenha) {
+            return
         }
 
-    const onSubmit = (e) => { 
-        e.preventDefault()
-        console.log("Datos enviados:", form)
+        try{
+            const response = await axios.post(
+                "http://localhost:8000/api/users/login/",
+                {
+                    username: form.usuario,
+                    password: form.contrasenha
+                }
+            )
+
+            localStorage.setItem("access", response.data.access);
+            localStorage.setItem("refresh", response.data.refresh);
+
+            navigate("/calendario")
+        } catch(err) {
+            if (err.response?.status === 401)
+                setError("Usuario o contraseña incorrectos")
+            else
+                setError("Error inesperado")
+        }
     }
 
         return <>
@@ -31,6 +59,8 @@ const Login = () => {
                 <label htmlFor="contrasenha">Contraseña</label>
                 <input type="password" id="contrasenha" name="contrasenha" value={form.contrasenha} onChange={onChange} placeholder="Contraseña" />
             </div>
+
+            {error && <p className="error">{error}</p>}
 
             <Link to="#">He olvidado mi contraseña</Link>
 
