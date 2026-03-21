@@ -87,14 +87,14 @@ const SeccionesComoFunciona = () => {
             <section key={s.id} className='seccion'>
                 <div className='texto'>
                     <h2>{ s.titulo }</h2>
-                    {s.textoAntesLista.map(p => (
-                        <p className='parrafoSeccionesComoFunciona'>{ p }</p>
+                    {s.textoAntesLista.map((p, i) => (
+                        <p key={i} className='parrafoSeccionesComoFunciona'>{ p }</p>
                     ))}
-                    {s.lista?.map((l, i) => (
-                        <ul>
+                    <ul>
+                        {s.lista?.map((l, i) => (
                             <li key={ i } className='listaComoFunciona'>{ l }</li>
-                        </ul>
-                    ))}
+                        ))}
+                    </ul>
                     {s.textoDespuesLista?.map((p, i) => (
                         <p key={ i }>{ p }</p>
                     ))}
