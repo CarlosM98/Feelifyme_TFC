@@ -49,8 +49,8 @@ const Beneficios = () => {
     return <section className="beneficios">
         <h2>Beneficios</h2>
         <div className="contenedor-general">
-            {tarjetas.map((t) => {
-                return <Card card={t} />
+            {tarjetas.map((t, index) => {
+                return <Card key={index} card={t} />
             })}
         </div>
     </section>

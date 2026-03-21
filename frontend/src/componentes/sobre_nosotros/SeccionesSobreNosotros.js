@@ -38,9 +38,9 @@ const SeccionesSobreNosotros = () => {
     return <>
         <h1>Creemos que entender cómo te sientes es el primer paso para cuidarte.</h1>
 
-        <section class="info-sobre-nosotros">
+        <section className="info-sobre-nosotros">
             {seccionesSobreNosotros.map(c => (
-                <Card card= {c} />
+                <Card key={c.id} card= {c} />
             ))}
         </section>
     </>

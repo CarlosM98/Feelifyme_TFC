@@ -17,8 +17,8 @@ const Descubre = () => {
     return <aside className="descubre">
         <h2>Descubre y aprende</h2>
         <div className="contenedor-general">
-            {tarjetas.map((c) => {
-                return <Card card={c} />
+            {tarjetas.map((c, index) => {
+                return <Card key={index} card={c} />
             })}
         </div>
     </aside>
