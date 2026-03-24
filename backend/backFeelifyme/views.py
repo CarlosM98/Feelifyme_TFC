@@ -1,15 +1,21 @@
 from django.shortcuts import render
-from rest_framework import generics
 from rest_framework.views import APIView
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
-from django.contrib.auth.models import User
 from .serializers import RegisterSerializer, UserSerializer
+from rest_framework import status
 
-class RegisterView(generics.CreateAPIView):
-    queryset = User.objects.all()
-    serializer_class = RegisterSerializer
-    
+class RegisterView(APIView):
+    def post(self, request):
+        serializer = RegisterSerializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        serializer.save()
+        return Response(
+            {"message": "Usuario creado correctamente"},
+            status=status.HTTP_201_CREATED
+        )
+
+        
 class MeView(APIView):
     permission_classes = [IsAuthenticated]
 
