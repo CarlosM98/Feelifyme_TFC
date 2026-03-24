@@ -80,7 +80,7 @@ const Registro = () => {
         if (success) {
             navigate("/login")
         }
-    }, [success])
+    }, [success, navigate])
 
     return <form onSubmit={onSubmit} className="form">
         <div className="conjunto">
