@@ -1,5 +1,5 @@
-import SeccionesComoFunciona from "../../componentes/como_funciona_comps/SeccionesComoFunciona";
-import PreguntaIteractiva from "../../componentes/como_funciona_comps/pregunta_iteractiva";
+import SeccionesComoFunciona from "../../componentes/publica/como_funciona_comps/SeccionesComoFunciona";
+import PreguntaIteractiva from "../../componentes/publica/como_funciona_comps/pregunta_iteractiva";
 
 const ComoFunciona = () => {
     return <>
