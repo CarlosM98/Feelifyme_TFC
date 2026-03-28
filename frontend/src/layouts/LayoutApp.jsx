@@ -3,7 +3,9 @@ import { useState } from "react";
 
 
 const LayoutApp = () => {
-    const [loggedIn, setLoggedIn] = useState(false);
+    const [loggedIn, setLoggedIn] = useState(() => {
+        return localStorage.getItem("access") !== null;
+    })
 
     return <>
         <Outlet context={{ loggedIn, setLoggedIn }} />

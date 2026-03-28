@@ -1,4 +1,4 @@
-import Card from "../generales/cards/Card"
+import Card from "../../generales/cards/Card"
 
 const SeccionesSobreNosotros = () => {
 

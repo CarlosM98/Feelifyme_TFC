@@ -7,27 +7,29 @@ import axios from "axios";
 const Login = () => {
 
     const navigate = useNavigate();
+    const { setLoggedIn } = useOutletContext()
 
     const [form, setForm] = useState({
         usuario: '',
         contrasenha: ''
     })
 
-    const onChange = (e) => { 
-        setForm({ ...form, [e.target.name]: e.target.value 
+    const onChange = (e) => {
+        setForm({
+            ...form, [e.target.name]: e.target.value
 
         })
     }
 
     const [error, setError] = useState('')
 
-    const onSubmit = async (e) => { 
+    const onSubmit = async (e) => {
         e.preventDefault()
         if (!form.usuario || !form.contrasenha) {
             return
         }
 
-        try{
+        try {
             const response = await axios.post(
                 "http://localhost:8000/api/users/login/",
                 {
@@ -39,8 +41,9 @@ const Login = () => {
             localStorage.setItem("access", response.data.access);
             localStorage.setItem("refresh", response.data.refresh);
 
+            setLoggedIn(true);
             navigate("/calendario")
-        } catch(err) {
+        } catch (err) {
             if (err.response?.status === 401)
                 setError("Usuario o contraseña incorrectos")
             else
@@ -48,7 +51,7 @@ const Login = () => {
         }
     }
 
-        return <>
+    return <>
         <form onSubmit={onSubmit} className="form">
             <div className="conjunto">
                 <label htmlFor="usuario">Email</label>

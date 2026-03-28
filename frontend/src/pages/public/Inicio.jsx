@@ -1,8 +1,8 @@
 import { useEffect } from "react";
 
-import Hero from "../../componentes/inicio/hero/Hero";
-import Descubre from "../../componentes/inicio/descubre/Descubre";
-import Beneficios from "../../componentes/inicio/beneficios/Beneficios";
+import Hero from "../../componentes/publica/inicio/hero/Hero";
+import Descubre from "../../componentes/publica/inicio/descubre/Descubre";
+import Beneficios from "../../componentes/publica/inicio/beneficios/Beneficios";
 
 
 const Inicio = () => {

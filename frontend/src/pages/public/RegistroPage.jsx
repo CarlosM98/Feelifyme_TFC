@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import Registro from "../../componentes/registro/Registro";
+import Registro from "../../componentes/auth/registro/Registro";
 const RegistroPage = () => {
     useEffect(() => {
         document.title = 'Registro'

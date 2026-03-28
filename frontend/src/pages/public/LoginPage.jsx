@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import Login from "../../componentes/login/Login";
+import Login from "../../componentes/auth/login/Login";
 
 const LoginPage = () => {
     useEffect(() => {

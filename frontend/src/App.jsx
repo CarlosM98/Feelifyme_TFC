@@ -6,7 +6,7 @@ import { useState } from 'react';
 import "./styles/comun.css";
 
 import Nav from './componentes/Menu/public/Nav';
-import Footer from './componentes/Footer/Footer';
+import Footer from './componentes/generales/Footer/Footer';
 
 import Inicio from './pages/public/Inicio';
 import Acceso from './pages/public/Acceso';

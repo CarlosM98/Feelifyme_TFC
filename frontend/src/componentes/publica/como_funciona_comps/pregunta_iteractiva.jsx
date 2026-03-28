@@ -1,8 +1,8 @@
 import { useState } from "react";
 import "./pregunta_iteractiva.css"
 
-import GrupoBotones from "../generales/grupo-botones/GrupoBotones";
-import Boton from "../generales/botons/Boton";
+import GrupoBotones from "../../generales/grupo-botones/GrupoBotones";
+import Boton from "../../generales/botons/Boton";
 
 const PreguntaIteractiva = () => {
     const [mensaje, setMensaje] = useState("");

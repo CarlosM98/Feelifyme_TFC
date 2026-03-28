@@ -1,11 +1,11 @@
-import grafico from "../../../assets/images/inicio/beneficios/iconEstad.png"
-import calendario from "../../../assets/images/inicio/beneficios/iconCal48.PNG"
-import reflexion from "../../../assets/images/inicio/beneficios/reflex.png"
-import logro from "../../../assets/images/inicio/beneficios/logro.png"
-import privacidad from"../../../assets/images/inicio/beneficios/priv.png"
-import sugerencia from "../../../assets/images/inicio/beneficios/sugeren.png"
+import grafico from "../../../../assets/images/inicio/beneficios/iconEstad.png"
+import calendario from "../../../../assets/images/inicio/beneficios/iconCal48.PNG"
+import reflexion from "../../../../assets/images/inicio/beneficios/reflex.png"
+import logro from "../../../../assets/images/inicio/beneficios/logro.png"
+import privacidad from "../../../../assets/images/inicio/beneficios/priv.png"
+import sugerencia from "../../../../assets/images/inicio/beneficios/sugeren.png"
 
-import Card from "../../generales/cards/Card"
+import Card from "../../../generales/cards/Card"
 
 import "./Beneficios.css"
 
