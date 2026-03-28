@@ -1,4 +1,8 @@
-import Card from "../../generales/cards/Card"
+import Card from "../../../generales/cards/Card"
+
+import GrupoBotones from "../../../generales/grupo-botones/GrupoBotones"
+import Boton from "../../../generales/botons/Boton"
+
 import "./Descubre.css"
 const Descubre = () => {
 
@@ -21,6 +25,9 @@ const Descubre = () => {
                 return <Card key={index} card={c} />
             })}
         </div>
+        <GrupoBotones>
+            <Boton texto = 'Más curiosidades' to='#' />
+        </GrupoBotones>
     </aside>
 
 }

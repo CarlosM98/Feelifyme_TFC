@@ -1,6 +1,6 @@
 import { useEffect } from "react"
 
-import SeccionesSobreNosotros from "../../componentes/sobre_nosotros/SeccionesSobreNosotros"
+import SeccionesSobreNosotros from "../../componentes/publica/sobre_nosotros/SeccionesSobreNosotros"
 
 const SobreNosotros = () => {
     useEffect(() => {

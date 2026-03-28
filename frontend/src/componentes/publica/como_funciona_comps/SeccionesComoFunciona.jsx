@@ -1,8 +1,8 @@
-import Calendario from '../../assets/images/como_funciona/calendario.png'
-import Estadisticas from '../../assets/images/como_funciona/estadisticas.png'
-import Medallas from '../../assets/images/como_funciona/medallas.png'
-import Recomendaciones from '../../assets/images/como_funciona/recomendaciones.png'
-import Rueda from '../../assets/images/como_funciona/rueda3.jpg'
+import Calendario from '../../../assets/images/como_funciona/calendario.png'
+import Estadisticas from '../../../assets/images/como_funciona/estadisticas.png'
+import Medallas from '../../../assets/images/como_funciona/medallas.png'
+import Recomendaciones from '../../../assets/images/como_funciona/recomendaciones.png'
+import Rueda from '../../../assets/images/como_funciona/rueda3.jpg'
 import "./SeccionesComoFunciona.css"
 
 const SeccionesComoFunciona = () => {

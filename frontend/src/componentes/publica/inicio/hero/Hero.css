@@ -46,4 +46,10 @@ h1{
         grid-column: 2;
         margin: 2rem;
     }
+
+    .principal .botones{
+        grid-column: 1 / -1;
+        grid-row: 2;
+        
+    }
 }

@@ -1,6 +1,6 @@
 import { useEffect } from "react";
-import FormularioContacto from '../../componentes/contacto/FormularioContacto'
-import Mapa from "../../componentes/contacto/mapa/Mapa";
+import FormularioContacto from '../../componentes/publica/contacto/FormularioContacto'
+import Mapa from "../../componentes/publica/contacto/mapa/Mapa";
 
 function Contacto() {
     useEffect(() => {
