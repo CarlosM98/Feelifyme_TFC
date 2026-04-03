@@ -5,9 +5,6 @@ import { useState } from 'react';
 
 import "./styles/comun.css";
 
-import Nav from './componentes/Menu/public/Nav';
-import Footer from './componentes/generales/Footer/Footer';
-
 import Inicio from './pages/public/Inicio';
 import Acceso from './pages/public/Acceso';
 import ComoFunciona from './pages/public/ComoFunciona';
@@ -16,16 +13,19 @@ import SobreNosotros from './pages/public/SobreNosotros';
 import Contacto from './pages/public/Contacto';
 import RegistroPage from './pages/public/RegistroPage';
 import LoginPage from './pages/public/LoginPage';
+
+import { MisEmociones } from './pages/private/MisEmociones';
+
 import NotFoundPage from './pages/public/NotFoundPage';
 
 import PublicLayout from './layouts/PublicLayout';
 import LayoutApp from './layouts/LayoutApp';
-
+import PrivateLayout from './layouts/PrivateLayout';
 
 function App() {
 
   const [loggedIn, setLoggedIn] = useState(false);
-  
+
   return (
     <BrowserRouter>
       <Routes>
@@ -42,14 +42,14 @@ function App() {
             <Route path="/login" element={<LoginPage />} />
           </Route>
 
+          <Route element={<PrivateLayout />}>
+            <Route path="/calendario" element={<MisEmociones />} />
+
+          </Route>
+
         </Route>
-        <Route path='*' element={<NotFoundPage/>}/>
+        <Route path='*' element={<NotFoundPage />} />
       </Routes>
-        {/*menu privado mas adelante junto a back
-        <Route path="/calendario" element={<Calendario />} />
-        <Route path="/estadisticas" element={<Estadisticas />} />
-        <Route path="/recomendaciones" element={<Recomendaciones />} />
-        <Route path="/logros" element={<Logros />} />*/}
 
     </BrowserRouter>
   );

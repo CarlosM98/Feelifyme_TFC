@@ -1,5 +1,5 @@
 import { Navigate, Outlet, useOutletContext } from "react-router-dom";
-import PrivateNav from "../componentes/Menu/private/PrivateNav";
+import { PrivateNav } from "../componentes/Menu/private/PrivateNav";
 import Footer from "../componentes/generales/Footer/Footer";
 import "../styles/layout.css";
 

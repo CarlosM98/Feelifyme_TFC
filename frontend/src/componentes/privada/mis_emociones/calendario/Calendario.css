@@ -1,0 +1,76 @@
+.calendario-container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.calendario-header {
+    display: flex;
+    margin-bottom: 2rem;
+}
+
+.calendario-header h2 {
+    padding: 0;
+    align-self: center;
+}
+
+.izquierda {
+    font-size: 1.5rem;
+    padding: 0 10px;
+    margin: 0 auto;
+}
+
+.derecha {
+    font-size: 1.5rem;
+    padding: 0 10px;
+    margin: 0 auto;
+}
+
+.grid-calendario {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 8px;
+    padding-bottom: 2rem;
+}
+
+.nombre-dia {
+    text-align: center;
+    font-weight: bold;
+    color: #1e3a8a;
+}
+
+.casilla-dia {
+    background: #e0ecff;
+    border-radius: 10px;
+    padding: 10px;
+    min-height: 90px;
+    cursor: pointer;
+    transition: 0.2s;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.casilla-dia:hover {
+    background: #c7dbff;
+}
+
+.casilla-dia.fuera-mes {
+    opacity: 0.35;
+}
+
+.casilla-dia.hoy {
+    border: 3px solid #1e40af;
+}
+
+.numero-dia {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #1e3a8a;
+}
+
+.mini-emociones {
+    display: flex;
+    gap: 4px;
+    flex-wrap: wrap;
+}
