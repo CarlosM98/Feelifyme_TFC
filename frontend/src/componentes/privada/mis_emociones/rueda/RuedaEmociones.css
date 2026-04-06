@@ -1,0 +1,32 @@
+.rueda-container {
+    /* Aumentamos el tamaño para que de margen a las palabras largas */
+    height: 1000px;
+    width: 100%;
+    max-width: 1000px;
+    margin: 0 auto;
+    font-family: 'Inter', sans-serif;
+}
+
+.tooltip-rueda {
+    padding: 8px 16px;
+    color: white;
+    border-radius: 4px;
+    box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+    font-weight: 600;
+}
+
+/* --- ADAPTACIÓN A DISPOSITIVOS MÓVILES (Media Queries) --- */
+
+/* Tablets (pantallas menores de 768px) */
+@media (max-width: 768px) {
+    .rueda-container {
+        height: 600px; /* Reducimos la altura para que no desborde la pantalla entera */
+    }
+}
+
+/* Teléfonos móviles (pantallas menores de 480px) */
+@media (max-width: 480px) {
+    .rueda-container {
+        height: 400px; /* Altura ideal apaisada/vertical para móviles */
+    }
+}
