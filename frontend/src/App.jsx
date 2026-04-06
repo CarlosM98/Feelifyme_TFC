@@ -15,6 +15,7 @@ import RegistroPage from './pages/public/RegistroPage';
 import LoginPage from './pages/public/LoginPage';
 
 import { MisEmociones } from './pages/private/MisEmociones';
+import { RegistroEmocion } from './pages/private/RegistroEmocion';
 
 import NotFoundPage from './pages/public/NotFoundPage';
 
@@ -44,7 +45,7 @@ function App() {
 
           <Route element={<PrivateLayout />}>
             <Route path="/calendario" element={<MisEmociones />} />
-
+            <Route path="/registro-emocion" element={<RegistroEmocion />} />
           </Route>
 
         </Route>

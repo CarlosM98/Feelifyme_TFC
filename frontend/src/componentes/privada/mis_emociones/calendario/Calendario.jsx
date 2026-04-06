@@ -63,7 +63,7 @@ export const Calendario = () => {
             </div>
             <GrupoBotones>
                 <Boton texto='Ver estadísticas' to='#' />
-                <Boton texto='Registro diario' to='#' />
+                <Boton texto='Registro diario' to='/registro-emocion' />
             </GrupoBotones>
         </div>
     );
