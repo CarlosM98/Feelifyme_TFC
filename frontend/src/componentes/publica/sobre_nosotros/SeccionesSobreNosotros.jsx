@@ -1,5 +1,7 @@
 import Card from "../../generales/cards/Card"
 
+import { Titulo } from "../../generales/titulos/Titulo"
+
 const SeccionesSobreNosotros = () => {
 
     const seccionesSobreNosotros = [
@@ -29,18 +31,18 @@ const SeccionesSobreNosotros = () => {
             title: "¿Hacia dónde vamos?",
             description: [
                 "Queremos que FeelifyMe evolucione contigo, acompañándote en cada paso de tu bienestar emocional. En el futuro, imaginamos una plataforma capaz de ofrecerte apoyo emocional inteligente, donde herramientas basadas en IA puedan conversar contigo, entender tus registros, y ofrecerte recomendaciones personalizadas en tiempo real.",
-                
+
                 "Desde ayudarte a reflexionar sobre lo que sientes, hasta sugerirte acciones concretas según tu estado emocional, el objetivo es que FeelifyMe se convierta en un compañero emocional cotidiano, accesible, empático y cada vez más intuitivo. Porque tu bienestar no es estático, y nosotros tampoco lo seremos.",
             ]
         }
     ]
 
     return <>
-        <h1>Creemos que entender cómo te sientes es el primer paso para cuidarte.</h1>
+        <Titulo nivel={1}>Creemos que entender cómo te sientes es el primer paso para cuidarte.</Titulo>
 
         <section className="info-sobre-nosotros">
             {seccionesSobreNosotros.map(c => (
-                <Card key={c.id} card= {c} />
+                <Card key={c.id} card={c} />
             ))}
         </section>
     </>

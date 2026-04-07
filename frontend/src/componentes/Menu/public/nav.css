@@ -1,4 +1,4 @@
-header{
+header {
     display: flex;
     flex-wrap: wrap;
     align-items: center;
@@ -10,29 +10,41 @@ header{
     background-color: #d7fbe1a9;
 }
 
-.logo-nav, .logo-footer{
+.logo-nav,
+.logo-footer {
     width: 150px;
     height: auto;
     margin: 0;
 }
 
-.hamburguesa{
+.hamburguesa {
     order: 1;
 }
-header > a{
+
+header>a {
     order: 2;
 }
 
-.acceso-img{
+.acceso-img,
+.boton-logout {
     order: 3;
     margin-left: 1rem;
+
 }
 
-.nav{
+.boton-logout {
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+}
+
+.nav {
     width: 100%;
     left: 0;
 }
-.lista-menu{
+
+.lista-menu {
     display: none;
     flex-direction: column;
     list-style-type: none;
@@ -45,7 +57,7 @@ header > a{
 }
 
 
-.lista-menu li{
+.lista-menu li {
     padding: 10px;
 }
 
@@ -58,7 +70,7 @@ header > a{
     display: none;
 }
 
-#menu-hamb:checked ~ nav .lista-menu {
+#menu-hamb:checked~nav .lista-menu {
     display: flex;
     background-color: #ffffff;
     position: fixed;
@@ -71,12 +83,19 @@ header > a{
     content: "☰";
 }
 
-#menu-hamb:checked + .hamburguesa::after {
+#menu-hamb:checked+.hamburguesa::after {
     content: "✖";
 }
 
 
-.acceso-img img{
+.acceso-img img {
+    width: 30px;
+    height: auto;
+    display: block;
+    margin: auto;
+}
+
+.boton-logout img {
     width: 30px;
     height: auto;
     display: block;
@@ -85,45 +104,51 @@ header > a{
 
 
 @media (min-width: 768px) {
-    .nav{
+    .nav {
         position: sticky;
-        justify-items:left;
+        justify-items: left;
         padding-left: 20px;
         height: auto;
         top: 0;
         flex: 1
     }
 
-    .nav .lista-menu{
+    .nav .lista-menu {
         display: flex;
         flex-direction: row;
         height: auto;
     }
 
-    .lista-menu li:hover{
-        background-color:#b4d6e9;
+    .lista-menu li:hover {
+        background-color: #b4d6e9;
         transition: color 0.6s ease;
         border-radius: 5px;
     }
-    .hamburguesa{
+
+    .hamburguesa {
         display: none;
     }
 
-    .acceso-img img{
+    .acceso-img img,
+    .boton-logout img {
         transition: filter 0.5s ease;
     }
-    .acceso-img img:hover{
-    filter: drop-shadow(5px 8px 8px rgba(0, 0, 0, 0.3));
-}
 
-    header > a{
+    .acceso-img img:hover,
+    .boton-logout img:hover {
+        filter: drop-shadow(5px 8px 8px rgba(0, 0, 0, 0.3));
+    }
+
+    header>a {
         order: 1;
     }
 
-    .nav{
+    .nav {
         order: 2;
     }
-    .acceso-img{
+
+    .acceso-img,
+    .boton-logout {
         order: 3;
     }
 }

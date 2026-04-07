@@ -1,6 +1,8 @@
 import { useState } from "react";
 import "./pregunta_iteractiva.css"
 
+import { Titulo } from "../../generales/titulos/Titulo"
+
 import GrupoBotones from "../../generales/grupo-botones/GrupoBotones";
 import Boton from "../../generales/botons/Boton";
 
@@ -12,7 +14,7 @@ const PreguntaIteractiva = () => {
         bien: "Nos alegra que estés bien pero siempre puedes darle una oportunidad a FeelifyMe.",
         neutro: "FeelifyMe te puede ayudar a abrirte al mundo de las emociones.",
         mal: "Usa FeelifyMe para ver patrones en tus conductas, estamos contigo."
-        }
+    }
 
     const emociones = ['bien', 'neutro', 'mal']
 
@@ -23,18 +25,18 @@ const PreguntaIteractiva = () => {
 
     return (
         <div className="estado-emocional">
-            <h3>¿Cómo te sientes hoy?</h3>
+            <Titulo nivel={3}>¿Cómo te sientes hoy?</Titulo>
             <div className="botonesIteractivos">
                 {emociones.map((emocion) => (
-                <button key={emocion} onClick={() => mostrarMensaje(emocion)} className={emocion === emocionSeleccionada ? `btn-${emocion}` : 'btn-base'}>
-                    {emocion} 
-                </button>
+                    <button key={emocion} onClick={() => mostrarMensaje(emocion)} className={emocion === emocionSeleccionada ? `btn-${emocion}` : 'btn-base'}>
+                        {emocion}
+                    </button>
                 ))}
             </div>
             {/* Renderizado condicional: solo muestra el mensaje si existe */}
             {mensaje && <p>{mensaje}</p>}
             <GrupoBotones>
-                <Boton texto = 'Registrarme' to='#' />
+                <Boton texto='Registrarme' to='#' />
             </GrupoBotones>
         </div>
     )
