@@ -3,6 +3,8 @@ import Card from "../../../generales/cards/Card"
 import GrupoBotones from "../../../generales/grupo-botones/GrupoBotones"
 import Boton from "../../../generales/botons/Boton"
 
+import { Titulo } from "../../../generales/titulos/Titulo"
+
 import "./Descubre.css"
 const Descubre = () => {
 
@@ -19,14 +21,14 @@ const Descubre = () => {
     ]
 
     return <aside className="descubre">
-        <h2>Descubre y aprende</h2>
+        <Titulo nivel={2}>Descubre y aprende</Titulo>
         <div className="contenedor-general">
             {tarjetas.map((c, index) => {
                 return <Card key={index} card={c} />
             })}
         </div>
         <GrupoBotones>
-            <Boton texto = 'Más curiosidades' to='#' />
+            <Boton texto='Más curiosidades' to='#' />
         </GrupoBotones>
     </aside>
 
