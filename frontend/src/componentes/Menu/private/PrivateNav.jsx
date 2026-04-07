@@ -1,7 +1,11 @@
 import { Link } from "react-router-dom"
+import { useAuth } from "../../../context/AuthContext"
 import logo from '../../../assets/images/menu/logo.PNG'
-import logout from '../../../assets/images/private/menu/logout.png'
+import logoutImg from '../../../assets/images/private/menu/logout.png'
+
 export const PrivateNav = () => {
+    const { logout } = useAuth();
+
     return (
         <>
             <Link to='/'>
@@ -22,9 +26,9 @@ export const PrivateNav = () => {
                 </ul>
             </nav>
 
-            <Link to="/logout" className="acceso-img">
-                <img src={logout} alt='logout' />
-            </Link>
+            <button onClick={logout} className="boton-logout" title="Cerrar sesión">
+                <img src={logoutImg} alt='logout' />
+            </button>
         </>
     )
 }

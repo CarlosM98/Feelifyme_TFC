@@ -3,7 +3,7 @@ import ReactECharts from 'echarts-for-react';
 import axios from 'axios';
 import './RuedaEmociones.css';
 
-const RuedaEmociones = () => {
+export const RuedaEmociones = () => {
     const [data, setData] = useState(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
@@ -119,14 +119,19 @@ const RuedaEmociones = () => {
     };
 
     return (
-        <div className="rueda-container">
-            <ReactECharts
-                option={option}
-                style={{ height: '100%', width: '100%' }}
-                opts={{ renderer: 'svg' }} // SVG renderer for sharp text
-            />
+        <div className="rueda-seccion-container">
+            <h2 className="rueda-titulo">¿Cómo te sientes hoy?</h2>
+            <p className="rueda-descripcion">Selecciona una emoción de la rueda para tu registro diario.</p>
+            <p className="rueda-tip">
+                💡 Tip: Toca cualquier emoción para hacer zoom y verla en detalle. Pulsa en el centro para volver atrás.
+            </p>
+            <div className="rueda-container">
+                <ReactECharts
+                    option={option}
+                    style={{ height: '100%', width: '100%' }}
+                    opts={{ renderer: 'svg' }} // SVG renderer for sharp text
+                />
+            </div>
         </div>
     );
 };
-
-export default RuedaEmociones;

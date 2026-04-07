@@ -1,11 +1,11 @@
-import { Navigate, Outlet, useOutletContext } from "react-router-dom";
+import { Navigate, Outlet } from "react-router-dom";
+import { useAuth } from "../context/AuthContext";
 import { PrivateNav } from "../componentes/Menu/private/PrivateNav";
 import Footer from "../componentes/generales/Footer/Footer";
 import "../styles/layout.css";
 
 const PrivateLayout = () => {
-    const context = useOutletContext();
-    const { loggedIn } = context;
+    const { loggedIn } = useAuth();
 
     if (!loggedIn) {
         return <Navigate to="/login" replace />
@@ -18,7 +18,7 @@ const PrivateLayout = () => {
             </header>
 
             <main>
-                <Outlet context={context} />
+                <Outlet />
             </main>
 
             <Footer />

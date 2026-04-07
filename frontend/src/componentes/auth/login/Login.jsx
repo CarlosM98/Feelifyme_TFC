@@ -1,13 +1,14 @@
 import { useState } from "react"
 import { Link } from "react-router-dom"
 import "./Login.css"
-import { useNavigate, useOutletContext } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import { useAuth } from "../../../context/AuthContext";
 import axios from "axios";
 
 const Login = () => {
 
     const navigate = useNavigate();
-    const { setLoggedIn } = useOutletContext()
+    const { login } = useAuth();
 
     const [form, setForm] = useState({
         usuario: '',
@@ -38,10 +39,7 @@ const Login = () => {
                 }
             )
 
-            localStorage.setItem("access", response.data.access);
-            localStorage.setItem("refresh", response.data.refresh);
-
-            setLoggedIn(true);
+            login(response.data.access, response.data.refresh);
             navigate("/calendario")
         } catch (err) {
             if (err.response?.status === 401)

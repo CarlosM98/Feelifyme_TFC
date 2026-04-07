@@ -6,7 +6,6 @@ import { useState } from 'react';
 import "./styles/comun.css";
 
 import Inicio from './pages/public/Inicio';
-import Acceso from './pages/public/Acceso';
 import ComoFunciona from './pages/public/ComoFunciona';
 import Curiosidades from './pages/public/Curiosidades';
 import SobreNosotros from './pages/public/SobreNosotros';
@@ -23,36 +22,36 @@ import PublicLayout from './layouts/PublicLayout';
 import LayoutApp from './layouts/LayoutApp';
 import PrivateLayout from './layouts/PrivateLayout';
 
+import { AuthProvider } from './context/AuthContext';
+
 function App() {
-
-  const [loggedIn, setLoggedIn] = useState(false);
-
   return (
-    <BrowserRouter>
-      <Routes>
+    <AuthProvider>
+      <BrowserRouter>
+        <Routes>
 
-        <Route element={<LayoutApp />}>
+          <Route element={<LayoutApp />}>
 
-          <Route element={<PublicLayout />}>
-            <Route path="/" element={<Inicio />} />
-            <Route path="/sobre-nosotros" element={<SobreNosotros />} />
-            <Route path="/como-funciona" element={<ComoFunciona />} />
-            <Route path="/contacto" element={<Contacto />} />
-            <Route path="/acceso" element={<Acceso />} />
-            <Route path="/registro" element={<RegistroPage />} />
-            <Route path="/login" element={<LoginPage />} />
+            <Route element={<PublicLayout />}>
+              <Route path="/" element={<Inicio />} />
+              <Route path="/sobre-nosotros" element={<SobreNosotros />} />
+              <Route path="/como-funciona" element={<ComoFunciona />} />
+              <Route path="/contacto" element={<Contacto />} />
+              <Route path="/registro" element={<RegistroPage />} />
+              <Route path="/login" element={<LoginPage />} />
+            </Route>
+
+            <Route element={<PrivateLayout />}>
+              <Route path="/calendario" element={<MisEmociones />} />
+              <Route path="/registro-emocion" element={<RegistroEmocion />} />
+            </Route>
+
           </Route>
+          <Route path='*' element={<NotFoundPage />} />
+        </Routes>
 
-          <Route element={<PrivateLayout />}>
-            <Route path="/calendario" element={<MisEmociones />} />
-            <Route path="/registro-emocion" element={<RegistroEmocion />} />
-          </Route>
-
-        </Route>
-        <Route path='*' element={<NotFoundPage />} />
-      </Routes>
-
-    </BrowserRouter>
+      </BrowserRouter>
+    </AuthProvider>
   );
 }
 
