@@ -1,11 +1,9 @@
 import { useEffect } from "react";
 
-import Hero from "../../componentes/publica/inicio/hero/Hero";
-import Descubre from "../../componentes/publica/inicio/descubre/Descubre";
-import Beneficios from "../../componentes/publica/inicio/beneficios/Beneficios";
+import { Hero, Descubre, Beneficios } from "../../componentes/publica/inicio";
 
 
-const Inicio = () => {
+export const Inicio = () => {
     useEffect(() => {
         document.title = 'Inicio'
     })
@@ -16,4 +14,4 @@ const Inicio = () => {
     </>
 }
 
-export default Inicio;
+

@@ -1,12 +1,7 @@
-import Card from "../../../generales/cards/Card"
-
-import GrupoBotones from "../../../generales/grupo-botones/GrupoBotones"
-import Boton from "../../../generales/botons/Boton"
-
-import { Titulo } from "../../../generales/titulos/Titulo"
+import { Card, GrupoBotones, Boton, Titulo } from "../../../generales"
 
 import "./Descubre.css"
-const Descubre = () => {
+export const Descubre = () => {
 
     const tarjetas = [
         {
@@ -33,5 +28,4 @@ const Descubre = () => {
     </aside>
 
 }
-
-export default Descubre
+

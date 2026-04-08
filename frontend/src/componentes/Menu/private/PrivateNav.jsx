@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom"
 import { useAuth } from "../../../context/AuthContext"
-import logo from '../../../assets/images/menu/logo.PNG'
-import logoutImg from '../../../assets/images/private/menu/logout.png'
+import { iconoLogo } from '../../../assets/images/menu'
+import { iconoLogout } from '../../../assets/images/private/menu'
 
 export const PrivateNav = () => {
     const { logout } = useAuth();
@@ -9,7 +9,7 @@ export const PrivateNav = () => {
     return (
         <>
             <Link to='/'>
-                <img src={logo} alt='logo' className="logo-nav" />
+                <img src={iconoLogo} alt='logo' className="logo-nav" />
             </Link>
 
             <input type="checkbox" id="menu-hamb" />
@@ -27,7 +27,7 @@ export const PrivateNav = () => {
             </nav>
 
             <button onClick={logout} className="boton-logout" title="Cerrar sesión">
-                <img src={logoutImg} alt='logout' />
+                <img src={iconoLogout} alt='logout' />
             </button>
         </>
     )

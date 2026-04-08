@@ -4,7 +4,7 @@ import Mapa from "../../componentes/publica/contacto/mapa/Mapa";
 
 import { Titulo } from "../../componentes/generales/titulos/Titulo";
 
-function Contacto() {
+export const Contacto = () => {
     useEffect(() => {
         document.title = 'Contacto'
     })
@@ -17,5 +17,4 @@ function Contacto() {
         </section>
     </div>
 }
-
-export default Contacto;
+

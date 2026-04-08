@@ -14,8 +14,7 @@ import {
 import { es } from "date-fns/locale";
 import { CasillaDia } from "./CasillaDia";
 import "./calendario.css";
-import GrupoBotones from "../../../generales/grupo-botones/GrupoBotones";
-import Boton from "../../../generales/botons/Boton";
+import { GrupoBotones, Boton } from "../../../generales";
 
 export const Calendario = () => {
     const [mesActual, setMesActual] = useState(new Date())

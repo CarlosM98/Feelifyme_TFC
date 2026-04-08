@@ -1,10 +1,10 @@
 import { Navigate, Outlet } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
-import { PrivateNav } from "../componentes/Menu/private/PrivateNav";
-import Footer from "../componentes/generales/Footer/Footer";
+import { PrivateNav } from "../componentes/Menu";
+import { Footer } from "../componentes/generales";
 import "../styles/layout.css";
 
-const PrivateLayout = () => {
+export const PrivateLayout = () => {
     const { loggedIn } = useAuth();
 
     if (!loggedIn) {
@@ -26,4 +26,4 @@ const PrivateLayout = () => {
     );
 };
 
-export default PrivateLayout;
+

@@ -1,6 +1,7 @@
 import "./Card.css"
 
-const Card = ({ card }) => {
+export const Card = ({ card }) => {
+
 
     return <article className="tarjetas-generales">
         <h3>
@@ -10,5 +11,4 @@ const Card = ({ card }) => {
         <p>{ card.description }</p>
     </article>
 }
-
-export default Card
+

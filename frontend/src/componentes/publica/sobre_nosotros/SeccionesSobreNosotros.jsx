@@ -1,6 +1,4 @@
-import Card from "../../generales/cards/Card"
-
-import { Titulo } from "../../generales/titulos/Titulo"
+import { Card, Titulo } from "../../generales"
 
 const SeccionesSobreNosotros = () => {
 
