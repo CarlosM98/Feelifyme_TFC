@@ -1,12 +1,9 @@
 import { useState } from "react";
 import "./pregunta_iteractiva.css"
 
-import { Titulo } from "../../generales/titulos/Titulo"
+import { Titulo, GrupoBotones, Boton } from "../../generales";
 
-import GrupoBotones from "../../generales/grupo-botones/GrupoBotones";
-import Boton from "../../generales/botons/Boton";
-
-const PreguntaIteractiva = () => {
+export const PreguntaIteractiva = () => {
     const [mensaje, setMensaje] = useState("");
     const [emocionSeleccionada, setEmocionSeleccionada] = useState(null)
 
@@ -41,5 +38,4 @@ const PreguntaIteractiva = () => {
         </div>
     )
 }
-
-export default PreguntaIteractiva;
+

@@ -1,11 +1,13 @@
-import Calendario from '../../../assets/images/public/como_funciona/calendario.png'
-import Estadisticas from '../../../assets/images/public/como_funciona/estadisticas.png'
-import Medallas from '../../../assets/images/public/como_funciona/medallas.png'
-import Recomendaciones from '../../../assets/images/public/como_funciona/recomendaciones.png'
-import Rueda from '../../../assets/images/public/como_funciona/rueda3.jpg'
+import { 
+    imgCalendarioCF, 
+    imgEstadisticasCF, 
+    imgMedallasCF, 
+    imgRecomendacionesCF, 
+    imgRuedaCF 
+} from "../../../assets/images/public/como_funciona"
 import "./SeccionesComoFunciona.css"
 
-const SeccionesComoFunciona = () => {
+export const SeccionesComoFunciona = () => {
 
     const secciones = [
         {
@@ -15,7 +17,7 @@ const SeccionesComoFunciona = () => {
                 "En FeelifyMe, el calendario te permite registrar cómo te sientes cada día de forma visual y sencilla. Al hacer clic en el día actual, accedes a una rueda de emociones donde puedes seleccionar todas las emociones que reflejen tu estado.",
                 "Cada día queda guardado con un resumen emocional. Si has elegido varias emociones, podrás verlas completas al volver a entrar en ese día. Este sistema te ayuda a entender tu evolución emocional, identificar patrones y conectar contigo mismo."
             ],
-            img: Calendario,
+            img: imgCalendarioCF,
             alt: "calendario"
         },
 
@@ -27,7 +29,7 @@ const SeccionesComoFunciona = () => {
                 "Podrás elegir una o varias emociones que reflejen tu estado emocional en ese momento. No hay límite: si tu día ha sido complejo, puedes registrar todas las emociones que necesites.",
                 "Una vez seleccionadas, quedarán guardadas en el calendario y podrás consultarlas en cualquier momento para reflexionar sobre tu evolución emocional."
             ],
-            img: Rueda,
+            img: imgRuedaCF,
             alt: "rueda emocional"
         },
 
@@ -44,7 +46,7 @@ const SeccionesComoFunciona = () => {
             textoDespuesLista: [
                 "Esta visualización te ofrece una forma sencilla y profunda de reflexionar sobre tu bienestar emocional, tomar conciencia de tus estados y avanzar hacia una mayor estabilidad personal."
             ],
-            img: Estadisticas,
+            img: imgEstadisticasCF,
             alt: "estadisticas"
         },
 
@@ -57,7 +59,7 @@ const SeccionesComoFunciona = () => {
                 "Junto a cada recomendación, tendrás la opción de añadir una breve reflexión personal: cómo te sentiste, qué aprendiste o qué te ayudó ese día.",
                 "Además, podrás marcar si has completado el tip, lo que contribuirá a tu progreso emocional."
             ],
-            img: Recomendaciones,
+            img: imgRecomendacionesCF,
             alt: "recomendaciones",
             class: "imgComoFunciona"
         },
@@ -75,7 +77,7 @@ const SeccionesComoFunciona = () => {
             textoDespuesLista: [
                 "Porque en FeelifyMe, cada pequeño paso cuenta. Y tu bienestar merece ser celebrado."
             ],
-            img: Medallas,
+            img: imgMedallasCF,
             alt: "logros",
             class: "imgComoFunciona"
         }
@@ -104,5 +106,4 @@ const SeccionesComoFunciona = () => {
         ))}
     </>
 }
-
-export default SeccionesComoFunciona
+

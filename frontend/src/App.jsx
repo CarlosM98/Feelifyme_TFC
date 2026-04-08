@@ -5,22 +5,23 @@ import { useState } from 'react';
 
 import "./styles/comun.css";
 
-import Inicio from './pages/public/Inicio';
-import ComoFunciona from './pages/public/ComoFunciona';
-import Curiosidades from './pages/public/Curiosidades';
-import SobreNosotros from './pages/public/SobreNosotros';
-import Contacto from './pages/public/Contacto';
-import RegistroPage from './pages/public/RegistroPage';
-import LoginPage from './pages/public/LoginPage';
+import { 
+  Inicio, 
+  ComoFunciona, 
+  Curiosidades, 
+  SobreNosotros, 
+  Contacto, 
+  RegistroPage, 
+  LoginPage, 
+  NotFoundPage 
+} from './pages/public';
 
-import { MisEmociones } from './pages/private/MisEmociones';
-import { RegistroEmocion } from './pages/private/RegistroEmocion';
+import { 
+  MisEmociones, 
+  RegistroEmocion 
+} from './pages/private';
 
-import NotFoundPage from './pages/public/NotFoundPage';
-
-import PublicLayout from './layouts/PublicLayout';
-import LayoutApp from './layouts/LayoutApp';
-import PrivateLayout from './layouts/PrivateLayout';
+import { PublicLayout, LayoutApp, PrivateLayout } from './layouts';
 
 import { AuthProvider } from './context/AuthContext';
 

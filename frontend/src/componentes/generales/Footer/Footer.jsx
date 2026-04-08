@@ -1,13 +1,15 @@
 import { Link } from "react-router-dom"
 
-import instagram from "../../../assets/images/footer/instagram.png"
-import linkedin from "../../../assets/images/footer/linkdlin.png"
-import twitter from "../../../assets/images/footer/twitter.png"
-import youtube from "../../../assets/images/footer/youtube.png"
-import logo from "../../../assets/images/menu/logo.PNG"
+import { 
+    iconoInstagram, 
+    iconoLinkedin, 
+    iconoTwitter, 
+    iconoYoutube 
+} from "../../../assets/images/footer"
+import { iconoLogo } from "../../../assets/images/menu"
 import "./Footer.css"
 
-const Footer = () => {
+export const Footer = () => {
 
     const enlaces = [
         { texto:'Contacto', url:'/contacto' },
@@ -17,10 +19,10 @@ const Footer = () => {
     ]
 
     const redes = [
-        { src: instagram, alt: 'Instagram', url:'https://instagram.com/feelifyme' },
-        { src: linkedin, alt: "LinkedIn", url: "https://linkedin.com/company/feelifyme" },
-        { src: twitter, alt: "Twitter", url: "https://twitter.com/feelifyme" },
-        { src: youtube, alt: "YouTube", url: "https://youtube.com/@feelifyme" }
+        { src: iconoInstagram, alt: 'Instagram', url:'https://instagram.com/feelifyme' },
+        { src: iconoLinkedin, alt: "LinkedIn", url: "https://linkedin.com/company/feelifyme" },
+        { src: iconoTwitter, alt: "Twitter", url: "https://twitter.com/feelifyme" },
+        { src: iconoYoutube, alt: "YouTube", url: "https://youtube.com/@feelifyme" }
     ]
 
     return <footer>
@@ -32,7 +34,7 @@ const Footer = () => {
                     </Link>
                 ))}
             </div>
-            <img src={logo} alt="logo" className="logo-footer" />
+            <img src={iconoLogo} alt="logo" className="logo-footer" />
         </div>
         <div className="contacto-redes">
             <div className="contacto">
@@ -52,5 +54,4 @@ const Footer = () => {
         <p className="copyright">&copy; 2025 FeelifyMe. Todos los derechos reservados.</p>
     </footer>
 }
-
-export default Footer
+
