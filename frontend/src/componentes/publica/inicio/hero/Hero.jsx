@@ -1,13 +1,10 @@
-import imagenPrincipal from "../../../../assets/images/public/inicio/hero/imagenPrincipal.png"
+import { imagenHeroPrincipal } from "../../../../assets/images/public/inicio/hero"
 
 import "./Hero.css"
 
-import GrupoBotones from "../../../generales/grupo-botones/GrupoBotones"
-import Boton from "../../../generales/botons/Boton"
+import { GrupoBotones, Boton, Titulo } from "../../../generales"
 
-import { Titulo } from "../../../generales/titulos/Titulo"
-
-const Hero = () => {
+export const Hero = () => {
 
     return <section className="principal">
         <div className="contenido-texto">
@@ -19,10 +16,8 @@ const Hero = () => {
             <Boton texto='Crear cuenta' to='#' />
         </GrupoBotones>
         <figure className="contenedor-imagen-principal">
-            <img src={imagenPrincipal} className="img-principal" />
+            <img src={imagenHeroPrincipal} alt="imagen hero" className="imagen-hero" />
         </figure>
 
     </section>
 }
-
-export default Hero

@@ -1,9 +1,9 @@
 import { useEffect } from "react";
-import Registro from "../../componentes/auth/registro/Registro";
+import { Registro } from "../../componentes/auth";
 
 import { Titulo } from "../../componentes/generales/titulos/Titulo";
 
-const RegistroPage = () => {
+export const RegistroPage = () => {
     useEffect(() => {
         document.title = 'Registro'
     })
@@ -15,4 +15,4 @@ const RegistroPage = () => {
     </section>
 }
 
-export default RegistroPage;
+

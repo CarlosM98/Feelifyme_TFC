@@ -2,10 +2,9 @@ import { Outlet } from "react-router-dom";
 import { useState } from "react";
 
 
-const LayoutApp = () => {
+export const LayoutApp = () => {
     return <>
         <Outlet />
     </>
 }
-
-export default LayoutApp
+

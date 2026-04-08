@@ -1,9 +1,9 @@
 import { useEffect } from "react";
-import Login from "../../componentes/auth/login/Login";
+import { Login } from "../../componentes/auth";
 
 import { Titulo } from "../../componentes/generales/titulos/Titulo";
 
-const LoginPage = () => {
+export const LoginPage = () => {
     useEffect(() => {
         document.title = 'Registro'
     })
@@ -15,4 +15,4 @@ const LoginPage = () => {
     </section>
 }
 
-export default LoginPage;
+

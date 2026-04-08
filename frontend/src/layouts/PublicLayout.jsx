@@ -1,10 +1,10 @@
 import { Outlet } from "react-router-dom"
 import { useAuth } from "../context/AuthContext"
-import Nav from "../componentes/Menu/public/Nav"
-import Footer from "../componentes/generales/Footer/Footer"
+import { Nav } from "../componentes/Menu"
+import { Footer } from "../componentes/generales"
 import "../styles/layout.css"
 
-const PublicLayout = () => {
+export const PublicLayout = () => {
     const { loggedIn } = useAuth();
 
     return <div className="estructura">
@@ -17,5 +17,4 @@ const PublicLayout = () => {
         <Footer />
     </div>
 }
-
-export default PublicLayout
+

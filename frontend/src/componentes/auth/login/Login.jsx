@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../../context/AuthContext";
 import axios from "axios";
 
-const Login = () => {
+export const Login = () => {
 
     const navigate = useNavigate();
     const { login } = useAuth();
@@ -72,5 +72,4 @@ const Login = () => {
         </form>
     </>
 }
-
-export default Login
+

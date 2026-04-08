@@ -1,4 +1,4 @@
-function Curiosidades() {
+export const Curiosidades = () => {
     return (
         <div className="curiosidades">
         <h1>Bienvenido a FeelifyMe</h1>
@@ -6,5 +6,4 @@ function Curiosidades() {
         </div>
     );
 }
-
-export default Curiosidades;
+

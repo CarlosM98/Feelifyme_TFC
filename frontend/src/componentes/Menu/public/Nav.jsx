@@ -1,15 +1,14 @@
 import { Link } from "react-router-dom"
 import { useEffect } from "react"
-import logo from '../../../assets/images/menu/logo.PNG'
-import acceso from '../../../assets/images/menu/acceso.png'
+import { iconoLogo, iconoAcceso } from '../../../assets/images/menu'
 import './nav.css'
 
 
-const Nav = () => {
+export const Nav = () => {
     return (
         <>
             <Link to='/'>
-                <img src={ logo } alt='logo' className="logo-nav" />
+                <img src={iconoLogo} alt='logo' className="logo-nav" />
             </Link>
 
             <input type="checkbox" id="menu-hamb"/>
@@ -22,14 +21,11 @@ const Nav = () => {
                     <li><Link to="/como-funciona">Cómo Funciona</Link></li>
                     <li><Link to="/curiosidades">Curiosidades</Link></li>
                     <li><Link to="/contacto">Contacto</Link></li>
+                    <li><Link to="/login" className="acceso-nav">
+                        <img src={iconoAcceso} alt="acceso" />
+                    </Link></li>
                 </ul>
             </nav>
-
-            <Link to="/login" className="acceso-img">
-                <img src={acceso} alt='acceso' />
-            </Link>
         </>
     )
 }
-
-export default Nav
