@@ -1,4 +1,4 @@
-.estructura{
+.estructura {
     display: grid;
     min-height: 100dvh;
     width: 100%;
@@ -6,31 +6,33 @@
     grid-template-columns: auto;
 }
 
-body{
-    background-color: #E6F4EA;
+body {
+    background-color: var(--bg-app);
+    overflow-x: hidden;
 }
 
-/*contenedor que engloba titulo de seccion y tarjetas*/
-.contenedor-general{
+
+.contenedor-general {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
 }
 
 @media (min-width: 768px) {
-    .contenedor-general{
-        display:grid;
+    .contenedor-general {
+        display: grid;
         grid-template-columns: 1fr 1fr;
     }
 
 }
+
 @media (min-width: 1024px) {
-    .contenedor-general{
-        display:grid;
+    .contenedor-general {
+        display: grid;
         grid-template-columns: 1fr 1fr 1fr;
     }
 
-    .descubre .contenedor-general{
+    .descubre .contenedor-general {
         grid-template-columns: 1fr 1fr;
     }
 

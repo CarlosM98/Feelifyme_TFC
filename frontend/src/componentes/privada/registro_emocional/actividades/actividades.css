@@ -1,0 +1,102 @@
+.contenedor-actividades {
+    padding: var(--space-md) var(--space-page);
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.titulo-actividades {
+    margin-bottom: var(--space-md);
+}
+
+.actividades-lista {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-md);
+    justify-items: center;
+    list-style: none;
+    padding: 0;
+}
+
+@media (min-width: 480px) {
+    .actividades-lista {
+        grid-template-columns: repeat(3, 1fr);
+        gap: var(--space-lg);
+    }
+}
+
+@media (min-width: 768px) {
+    .actividades-lista {
+        grid-template-columns: repeat(4, 1fr);
+        gap: var(--space-xl);
+    }
+}
+
+.actividad-item {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: var(--space-sm);
+    border-radius: var(--radius-lg);
+    transition: all var(--tr-fast);
+    cursor: pointer;
+    width: 100%;
+}
+
+.actividad-item:active {
+    transform: scale(0.92);
+    background-color: rgba(0, 0, 0, 0.05);
+}
+
+.actividad-item-img {
+    width: 55px;
+    height: 55px;
+    object-fit: contain;
+    margin-bottom: var(--space-sm);
+}
+
+.titulo-texto {
+    display: block;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--text-soft);
+    margin-top: var(--space-sm);
+    text-transform: capitalize;
+    text-align: center;
+    pointer-events: none;
+}
+
+@media (min-width: 768px) {
+    .titulo-texto {
+        position: absolute;
+        top: 100%;
+        left: 50%;
+        transform: translateX(-50%);
+        opacity: 0;
+        transition: opacity var(--tr-normal), transform var(--tr-normal);
+        background: rgba(0, 0, 0, 0.85);
+        color: #ffffff;
+        padding: 4px 12px;
+        white-space: nowrap;
+        border-radius: var(--radius-md);
+        z-index: 10;
+        margin-top: 0;
+        font-size: 0.75rem;
+    }
+
+    .actividad-item:hover .titulo-texto {
+        opacity: 1;
+        transform: translateX(-50%) translateY(5px);
+    }
+
+    .actividad-item:hover {
+        transform: translateY(-5px);
+        background-color: var(--bg-card);
+        box-shadow: var(--shadow-soft);
+    }
+
+    .actividad-item-img {
+        width: 60px;
+        height: 60px;
+    }
+}

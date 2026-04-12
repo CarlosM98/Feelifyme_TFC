@@ -1,5 +1,5 @@
 .rueda-seccion-container {
-    padding: 0 15px;
+    padding: 0 var(--space-page);
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -7,54 +7,48 @@
 
 .rueda-titulo {
     text-align: center;
-    margin-top: 40px;
-    font-size: 1.5rem;
-    font-weight: 700;
+    margin-top: var(--space-xl);
 }
 
 .rueda-descripcion {
     text-align: center;
-    color: #666;
-    margin-bottom: 5px;
+    color: var(--text-soft);
+    margin-bottom: var(--space-xs);
 }
 
 .rueda-tip {
     text-align: center;
-    color: #3b82f6;
+    color: var(--color-accent);
     font-size: 0.9rem;
-    margin-bottom: 20px;
+    margin-bottom: var(--space-md);
     font-weight: bold;
 }
 
 .rueda-container {
-    /* Aumentamos el tamaño para que de margen a las palabras largas */
     height: 1000px;
     width: 100%;
     max-width: 1000px;
     margin: 0 auto;
-    font-family: 'Inter', sans-serif;
 }
 
 .tooltip-rueda {
-    padding: 8px 16px;
+    padding: var(--space-sm) var(--space-md);
     color: white;
-    border-radius: 4px;
+    border-radius: var(--radius-md);
     box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
     font-weight: 600;
 }
 
-/* --- ADAPTACIÓN A DISPOSITIVOS MÓVILES (Media Queries) --- */
+/* --- ADAPTACIÓN A DISPOSITIVOS MÓVILES --- */
 
-/* Tablets (pantallas menores de 768px) */
 @media (max-width: 768px) {
     .rueda-container {
-        height: 600px; /* Reducimos la altura para que no desborde la pantalla entera */
+        height: 600px;
     }
 }
 
-/* Teléfonos móviles (pantallas menores de 480px) */
 @media (max-width: 480px) {
     .rueda-container {
-        height: 400px; /* Altura ideal apaisada/vertical para móviles */
+        height: 450px;
     }
 }

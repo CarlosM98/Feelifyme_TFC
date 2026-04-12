@@ -2,9 +2,9 @@ from django.shortcuts import render
 from rest_framework.views import APIView
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
-from .serializers import RegisterSerializer, UserSerializer
+from .serializers import RegisterSerializer, UserSerializer, ActividadSerializer
 from rest_framework import status
-from backFeelifyme.models import Emocion
+from backFeelifyme.models import Emocion, Actividad
 class RegisterView(APIView):
     def post(self, request):
         serializer = RegisterSerializer(data=request.data)
@@ -68,3 +68,10 @@ class EmocionTreeView(APIView):
         }
 
         return Response(tree)
+
+class ActividadListView(APIView):
+
+    def get(self, request):
+        actividades = Actividad.objects.all()
+        serializer = ActividadSerializer(actividades, many=True)
+        return Response(serializer.data)

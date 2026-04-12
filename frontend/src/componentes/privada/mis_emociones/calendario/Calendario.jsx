@@ -31,8 +31,8 @@ export const Calendario = () => {
     })
 
     return (
-        <div className="calendario-container">
-            <div className="calendario-header">
+        <section className="calendario-container">
+            <header className="calendario-header">
                 <button className="izquierda" onClick={() => setMesActual(subMonths(mesActual, 1))}>
                     ←
                 </button>
@@ -42,13 +42,13 @@ export const Calendario = () => {
                 <button className="derecha" onClick={() => setMesActual(addMonths(mesActual, 1))}>
                     →
                 </button>
-            </div>
+            </header>
 
-            <div className="grid-calendario nombres-dias">
+            <ul className="grid-calendario nombres-dias">
                 {["Lun", "Mar", "Mié", "Jue", "Vie", "Sáb", "Dom"].map((d) => (
-                    <div key={d} className="nombre-dia">{d}</div>
+                    <li key={d} className="nombre-dia">{d}</li>
                 ))}
-            </div>
+            </ul>
 
             <div className="grid-calendario">
                 {dias.map((dia) => (
@@ -64,6 +64,7 @@ export const Calendario = () => {
                 <Boton texto='Ver estadísticas' to='#' />
                 <Boton texto='Registro diario' to='/registro-emocion' />
             </GrupoBotones>
-        </div>
+        </section>
+
     );
 };
