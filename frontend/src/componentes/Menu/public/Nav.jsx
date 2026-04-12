@@ -11,7 +11,7 @@ export const Nav = () => {
                 <img src={iconoLogo} alt='logo' className="logo-nav" />
             </Link>
 
-            <input type="checkbox" id="menu-hamb"/>
+            <input type="checkbox" id="menu-hamb" />
             <label htmlFor="menu-hamb" className="hamburguesa"></label>
 
             <nav className="nav">
@@ -21,11 +21,11 @@ export const Nav = () => {
                     <li><Link to="/como-funciona">Cómo Funciona</Link></li>
                     <li><Link to="/curiosidades">Curiosidades</Link></li>
                     <li><Link to="/contacto">Contacto</Link></li>
-                    <li><Link to="/login" className="acceso-nav">
-                        <img src={iconoAcceso} alt="acceso" />
-                    </Link></li>
                 </ul>
             </nav>
+            <Link to="/login" className="acceso-nav">
+                <img src={iconoAcceso} alt="acceso" />
+            </Link>
         </>
     )
 }

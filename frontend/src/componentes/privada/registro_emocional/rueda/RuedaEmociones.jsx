@@ -3,10 +3,14 @@ import ReactECharts from 'echarts-for-react';
 import axios from 'axios';
 import './RuedaEmociones.css';
 
+import { Titulo } from '../../../generales/titulos/Titulo';
+
 export const RuedaEmociones = () => {
     const [data, setData] = useState(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
+    const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+
 
     const getBaseColor = (name) => {
         const lower = name.toLowerCase();
@@ -31,11 +35,11 @@ export const RuedaEmociones = () => {
 
             // Asigna color base si es de nivel 1, si no, hereda y hace un pequeño fade (ECharts lo hace semi automático, pero lo forzamos visualmente si queremos)
             const color = getBaseColor(node.name) || parentColor;
-            
+
             const newNode = {
                 name: nombreLimpio,
                 // Si es un nodo hoja (value), ECharts lo usa automáticamente para el tamaño de la cuña
-                value: node.loc || 1, 
+                value: node.loc || 1,
                 itemStyle: {
                     color: color
                 }
@@ -68,7 +72,24 @@ export const RuedaEmociones = () => {
         };
 
         fetchArbol();
+
+        const handleResize = () => setWindowWidth(window.innerWidth);
+        window.addEventListener('resize', handleResize);
+        return () => window.removeEventListener('resize', handleResize);
     }, []);
+
+    // Determinar tamaños de fuente según el ancho de pantalla
+    const getFontSizes = () => {
+        if (windowWidth < 480) {
+            return { level1: 10, level2: 8.5, level3: 7 };
+        } else if (windowWidth < 768) {
+            return { level1: 11, level2: 9.5, level3: 8 };
+        }
+        return { level1: 13, level2: 11, level3: 8.5 };
+    };
+
+    const fonts = getFontSizes();
+
 
     if (loading) return <div className="rueda-container">Cargando emociones...</div>;
     if (error) return <div className="rueda-container">{error}</div>;
@@ -98,29 +119,32 @@ export const RuedaEmociones = () => {
                 fontWeight: 'bold',
                 minAngle: 0, // Lo forzamos a 0 para que no oculte nada por culpa del ángulo estrecho
                 textBorderColor: 'rgba(0,0,0,0)', // Sin sombra extraña
-                fontFamily: 'Inter, sans-serif'
+                fontFamily: 'emociones-font, sans-serif'
             },
+
+
             levels: [
                 {}, // Root configuration (vacío en nuestro caso)
                 {
                     // Nivel 1 (Centro)
-                    label: { rotate: 'tangential', fontSize: 13, color: '#fff'}
+                    label: { rotate: 'radial', fontSize: fonts.level1, color: '#fff', align: 'center' }
                 },
                 {
                     // Nivel 2
-                    label: { align: 'center', fontSize: 11, minAngle: 0 }
+                    label: { align: 'center', fontSize: fonts.level2, minAngle: 0 }
                 },
                 {
                     // Nivel 3 (Anillo exterior)
-                    label: { align: 'center', fontSize: 8.5, minAngle: 0 }
+                    label: { align: 'center', fontSize: fonts.level3, minAngle: 0 }
                 }
             ]
+
         }
     };
 
     return (
-        <div className="rueda-seccion-container">
-            <h2 className="rueda-titulo">¿Cómo te sientes hoy?</h2>
+        <section className="rueda-seccion-container">
+            <Titulo className="rueda-titulo">¿Cómo te sientes hoy?</Titulo>
             <p className="rueda-descripcion">Selecciona una emoción de la rueda para tu registro diario.</p>
             <p className="rueda-tip">
                 💡 Tip: Toca cualquier emoción para hacer zoom y verla en detalle. Pulsa en el centro para volver atrás.
@@ -132,6 +156,7 @@ export const RuedaEmociones = () => {
                     opts={{ renderer: 'svg' }} // SVG renderer for sharp text
                 />
             </div>
-        </div>
+        </section>
     );
 };
+
