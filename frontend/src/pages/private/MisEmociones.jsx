@@ -2,9 +2,8 @@ import { Calendario } from "../../componentes/privada/mis_emociones/calendario/C
 
 
 export const MisEmociones = () => {
-
-
-    return <div>
+    return <section className="mis-emociones-page">
         <Calendario />
-    </div>
+    </section>
 }
+

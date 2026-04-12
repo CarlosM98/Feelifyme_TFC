@@ -1,24 +1,24 @@
-.botones-generales{
+.botones-generales {
     display: inline-block;
     text-decoration: none;
     font-size: 1rem;
     font-family: nunito-medium;
     text-align: center;
-    border: 0.2em solid #4481a4;
-    border-radius: 0.5em;
-    background-color: #b4d6e9;
+    border: 0.2em solid var(--color-secondary);
+    border-radius: var(--radius-md);
+    background-color: var(--bg-secondary);
     padding: 0.5em 1em;
     margin: 1em;
     cursor: pointer;
 }
 
 @media (min-width: 768px) {
-
-    .botones-generales{
-        transition: transform 0.5s ease;
+    .botones-generales {
+        transition: transform var(--tr-normal);
     }
-    .botones-generales:hover{
+    
+    .botones-generales:hover {
         transform: scale(1.05);
-        color:#014974;
+        color: var(--color-secondary-dark);
     }
 }

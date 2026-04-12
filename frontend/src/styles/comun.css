@@ -1,33 +1,78 @@
-*{
+:root {
+    --text-main: #2d3748;
+    --text-soft: #4a5568;
+    --bg-app: #E6F4EA;
+    --bg-nav: #d7fbe1a9;
+    --bg-card: #ffffff;
+
+    --bg-card-alt: #e1fbf1;
+    --bg-footer: #CDE7D3;
+    --bg-secondary: #b4d6e9;
+
+    --color-accent: #3b82f6;
+    --color-primary-dark: #1e3a8a;
+    --color-primary-soft: #e0ecff;
+    --color-primary-hover: #c7dbff;
+    --color-secondary: #4481a4;
+    --color-secondary-dark: #014974;
+    --color-border: #93c5a1e0;
+    --bg-soft-gradient: linear-gradient(to right, #fcfceb, #f5f5dc);
+    --bg-neutral-soft: #ddd;
+    --color-well: #8fd19e;
+    --color-neutral: #f2e6a7;
+    --color-bad: #e8a1a1;
+
+    /* Radios de Borde */
+    --radius-sm: 4px;
+    --radius-md: 8px;
+    --radius-lg: 16px;
+    --radius-rounded: 50%;
+
+    /* Espaciado */
+    --space-xs: 4px;
+    --space-sm: 8px;
+    --space-md: 16px;
+    --space-lg: 24px;
+    --space-xl: 32px;
+    --space-page: 1.5rem;
+
+    /* Transiciones */
+    --tr-fast: 0.2s ease;
+    --tr-normal: 0.35s ease;
+
+    /* Sombras */
+    --shadow-soft: 0 4px 12px rgba(0, 0, 0, 0.05);
+    --shadow-card: 0 2px 6px 5px rgba(0, 0, 0, 0.1);
+
+    /* Niveles (Z-index) */
+    --z-nav: 1000;
+    --z-modal: 2000;
+}
+
+
+
+* {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
     text-decoration: none;
-    color: #000000;
+    color: var(--text-main);
     list-style: none;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
-h1 {
-    padding: 1rem 0;
-    font-family: quicksand-bold;
-    text-align: center;
-}
 
-h2 {
-    padding-bottom: 0.5rem;
-    font-family: quicksand-bold;
-    text-align: center;
-}
 
-h3 {
-    padding-bottom: 0.5rem;
-    font-family: quicksand-semibold;
-    text-align: center;
-}
-
-p, label, input, textarea {
+p,
+label,
+input,
+textarea {
     font-family: nunito-regular;
+    line-height: 1.6;
+    letter-spacing: -0.01em;
 }
+
 
 /* Formularios */
 .form {
@@ -43,7 +88,8 @@ p, label, input, textarea {
     margin-bottom: 10px;
 }
 
-input, textarea {
+input,
+textarea {
     padding: 3px;
     margin-bottom: 10px;
 }
@@ -55,15 +101,21 @@ button {
 }
 
 @media (min-width: 768px) {
-    input:focus, textarea:focus {
-        border: 2px solid #000;
+
+    input:focus,
+    textarea:focus {
+        border: 2px solid var(--text-main);
     }
 
-    input:hover, textarea:hover {
-        border: 2px solid #4481a4;
+
+    input:hover,
+    textarea:hover {
+        border: 2px solid var(--color-secondary);
     }
 
-    input, textarea {
+
+    input,
+    textarea {
         transition: border 0.4s ease;
     }
 }
@@ -89,5 +141,29 @@ button {
 @font-face {
     font-family: "nunito-medium";
     src: url(../assets/fuentes/Nunito/static/Nunito-Medium.ttf);
+    font-weight: 700;
+}
+
+@font-face {
+    font-family: "quicksand-regular";
+    src: url(../assets/fuentes/Quicksand/static/Quicksand-Regular.ttf);
+    font-weight: 400;
+}
+
+@font-face {
+    font-family: "quicksand-semibold";
+    src: url(../assets/fuentes/Quicksand/static/Quicksand-SemiBold.ttf);
+    font-weight: 600;
+}
+
+@font-face {
+    font-family: "quicksand-bold";
+    src: url(../assets/fuentes/Quicksand/static/Quicksand-Bold.ttf);
+    font-weight: 700;
+}
+
+@font-face {
+    font-family: "emociones-font";
+    src: url(../assets/fuentes/Quicksand/static/Quicksand-Bold.ttf);
     font-weight: 700;
 }

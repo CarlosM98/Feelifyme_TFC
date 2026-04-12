@@ -1,9 +1,10 @@
-.beneficios{
+.beneficios {
     display: flex;
     flex-direction: column;
-    padding: 1rem;
-    margin: 0 1.5rem;
+    padding: var(--space-md);
+    margin: 0 var(--space-page);
 }
+
 
 
 @media (min-width: 768px) {
