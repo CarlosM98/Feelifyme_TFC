@@ -12,7 +12,7 @@ export const CasillaDia = ({ fecha, esMesActual, esHoy }) => {
     }
 
     return (
-        <div
+        <article
             className={`casilla-dia 
         ${!esMesActual ? "fuera-mes" : ""} 
         ${esHoy ? "hoy" : ""}`}
@@ -21,6 +21,7 @@ export const CasillaDia = ({ fecha, esMesActual, esHoy }) => {
             <div className="numero-dia">{format(fecha, "d")}</div>
 
             <div className="mini-emociones"></div>
-        </div>
+        </article>
     )
+
 }

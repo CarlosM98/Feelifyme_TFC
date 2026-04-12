@@ -1,19 +1,17 @@
 .estado-emocional {
     display: flex;
     flex-direction: column;
-
     max-width: 600px;
     width: 90%;
     margin: auto;
     text-align: center;
 }
 
-
-.pregunta-h1{
+.pregunta-h1 {
     text-align: center;
 }
 
-.estado-emocional h3{
+.estado-emocional h3 {
     text-align: center;
 }
 
@@ -21,10 +19,9 @@
     display: flex;
     align-self: center;
     margin-top: 1rem;
-    
 }
 
-.botonesIteractivos button{
+.botonesIteractivos button {
     padding: 0.5rem 1rem;
     margin: 15px;
     border-radius: 5px;
@@ -37,31 +34,28 @@
 
 .btn-base {
     padding: 0.5rem 1rem;
-    border-radius: 8px;
+    border-radius: var(--border-radius-md);
     border: none;
-    background-color: #ddd;
+    background-color: var(--bg-neutral-soft);
     cursor: pointer;
 }
 
 /* Colores botones emoción */
 .btn-bien {
-    background-color: #8fd19e;
+    background-color: var(--color-well);
 }
 
 .btn-neutro {
-    background-color: #f2e6a7;
+    background-color: var(--color-neutral);
 }
 
 .btn-mal {
-    background-color: #e8a1a1;
+    background-color: var(--color-bad);
 }
 
 @media (min-width: 768px) {
-    .btn-base:hover{
+    .btn-base:hover {
         transition: color 0.3s ease;
         transform: scale(1.2);
     }
-
 }
-
-

@@ -1,0 +1,21 @@
+h1 {
+    padding: var(--space-md) 0;
+    font-family: quicksand-bold;
+    text-align: center;
+    width: 100%;
+}
+
+h2 {
+    padding-bottom: var(--space-sm);
+    font-family: quicksand-bold;
+    text-align: center;
+    width: 100%;
+    font-size: 1.5rem;
+}
+
+h3 {
+    padding-bottom: var(--space-sm);
+    font-family: quicksand-semibold;
+    text-align: center;
+    width: 100%;
+}
