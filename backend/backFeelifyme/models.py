@@ -71,7 +71,6 @@ class RegistroDiario(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
 
     class Meta:
-        unique_together = (('usuario', 'fecha'),)
         ordering = ['-fecha']
         verbose_name = "Registro diario"
         verbose_name_plural = "Registros diarios"
@@ -98,7 +97,7 @@ class EmocionRegistrada(models.Model):
         verbose_name_plural = "Emociones registradas"
 
     def __str__(self):
-        return f"{self.emocion} → {self.registro.fecha.date()}"
+        return f"{self.emocion} → {self.registro.fecha}"
 
 class Actividad(models.Model):
     nombre = models.CharField(

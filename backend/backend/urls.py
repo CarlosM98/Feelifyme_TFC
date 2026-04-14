@@ -20,7 +20,7 @@ from rest_framework_simplejwt.views import (
     TokenObtainPairView,
     TokenRefreshView,
 )
-from backFeelifyme.views import RegisterView, MeView, EmocionTreeView, ActividadListView
+from backFeelifyme.views import RegisterView, MeView, EmocionTreeView, ActividadListView, RegistroDiarioListView, EmocionRegistradaListView, ActividadRealizadaListView, CrearRegistroDiario
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -30,5 +30,8 @@ urlpatterns = [
     path("api/users/me/", MeView.as_view()),
     path("api/emociones/arbol/", EmocionTreeView.as_view()),
     path("api/actividades/", ActividadListView.as_view()),
-
+    path('api/registro-diario/', CrearRegistroDiario.as_view(), name='crear-registro-diario'),
+    path('api/registros/', RegistroDiarioListView.as_view()),
+    path('api/emociones-registradas/', EmocionRegistradaListView.as_view()),
+    path('api/actividades-realizadas/', ActividadRealizadaListView.as_view()),
 ]

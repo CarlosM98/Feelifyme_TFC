@@ -2,7 +2,11 @@ from rest_framework import serializers
 from django.contrib.auth.models import User
 from .models import (
     Profile,
-    Actividad
+    Actividad,
+    RegistroDiario,
+    EmocionRegistrada,
+    ActividadRealizada,
+    Emocion
 )
 
 class RegisterSerializer(serializers.Serializer):
@@ -51,3 +55,56 @@ class ActividadSerializer(serializers.ModelSerializer):
     class Meta:
         model = Actividad
         fields = ["id", "nombre"]
+
+
+class RegistroDiarioCreateSerializer(serializers.Serializer):
+    fecha = serializers.DateField()
+    notas = serializers.CharField(allow_blank=True, required=False)
+    emociones = serializers.ListField(child=serializers.IntegerField())
+    actividades = serializers.ListField(child=serializers.IntegerField())
+
+    def create(self, validated_data):
+        user = self.context['request'].user
+
+        registro = RegistroDiario.objects.create(
+            usuario=user,
+            fecha=validated_data['fecha'],
+            notas=validated_data.get('notas', '')
+        )
+
+        for emocion_id in validated_data['emociones']:
+            EmocionRegistrada.objects.create(
+                registro=registro,
+                emocion=Emocion.objects.get(id=emocion_id)
+            )
+
+        for actividad_id in validated_data['actividades']:
+            ActividadRealizada.objects.create(
+                registro=registro,
+                actividad=Actividad.objects.get(id=actividad_id)
+            )
+
+        return registro
+
+
+class RegistroDiarioSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = RegistroDiario
+        fields = ["id", "fecha", "notas", "created_at"]
+
+
+class EmocionRegistradaSerializer(serializers.ModelSerializer):
+    emocion = serializers.StringRelatedField()
+    fecha = serializers.DateField(source="registro.fecha")
+
+    class Meta:
+        model = EmocionRegistrada
+        fields = ["id", "emocion", "fecha", "registro"]
+
+class ActividadRealizadaSerializer(serializers.ModelSerializer):
+    actividad = serializers.StringRelatedField()
+    fecha = serializers.DateField(source="registro.fecha")
+
+    class Meta:
+        model = ActividadRealizada
+        fields = ["id", "actividad", "fecha", "registro"]
