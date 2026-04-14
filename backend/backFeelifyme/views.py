@@ -2,9 +2,15 @@ from django.shortcuts import render
 from rest_framework.views import APIView
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
-from .serializers import RegisterSerializer, UserSerializer, ActividadSerializer
+from .serializers import (
+    RegisterSerializer, UserSerializer, ActividadSerializer, 
+    RegistroDiarioCreateSerializer, RegistroDiarioSerializer,
+    EmocionRegistradaSerializer, ActividadRealizadaSerializer
+)
 from rest_framework import status
-from backFeelifyme.models import Emocion, Actividad
+from backFeelifyme.models import Emocion, Actividad, RegistroDiario, EmocionRegistrada, ActividadRealizada
+
+
 class RegisterView(APIView):
     def post(self, request):
         serializer = RegisterSerializer(data=request.data)
@@ -35,6 +41,7 @@ class EmocionTreeView(APIView):
         emocion_dict = {}
         for em in emociones:
             emocion_dict[em.id] = {
+                "id": em.id,
                 "name": em.nombre,
                 "nivel": em.nivel,
                 "children": []
@@ -74,4 +81,43 @@ class ActividadListView(APIView):
     def get(self, request):
         actividades = Actividad.objects.all()
         serializer = ActividadSerializer(actividades, many=True)
+        return Response(serializer.data)
+
+class CrearRegistroDiario(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def post(self, request):
+        serializer = RegistroDiarioCreateSerializer(
+            data=request.data,
+            context={'request': request}
+        )
+
+        if serializer.is_valid():
+            registro = serializer.save()
+            return Response({"message": "Registro creado correctamente"}, status=status.HTTP_201_CREATED)
+
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+class RegistroDiarioListView(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def get(self, request):
+        registros = RegistroDiario.objects.filter(usuario=request.user)
+        serializer = RegistroDiarioSerializer(registros, many=True)
+        return Response(serializer.data)
+
+class EmocionRegistradaListView(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def get(self, request):
+        emociones = EmocionRegistrada.objects.filter(registro__usuario=request.user)
+        serializer = EmocionRegistradaSerializer(emociones, many=True)
+        return Response(serializer.data)
+
+class ActividadRealizadaListView(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def get(self, request):
+        actividades = ActividadRealizada.objects.filter(registro__usuario=request.user)
+        serializer = ActividadRealizadaSerializer(actividades, many=True)
         return Response(serializer.data)
