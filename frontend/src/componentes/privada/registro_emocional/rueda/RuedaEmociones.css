@@ -39,8 +39,6 @@
     font-weight: 600;
 }
 
-/* --- ADAPTACIÓN A DISPOSITIVOS MÓVILES --- */
-
 @media (max-width: 768px) {
     .rueda-container {
         height: 600px;
