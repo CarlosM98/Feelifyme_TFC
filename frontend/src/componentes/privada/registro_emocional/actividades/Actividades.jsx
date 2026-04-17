@@ -7,7 +7,7 @@ import './actividades.css'
 
 import { Titulo } from "../../../generales";
 
-export const Actividades = () => {
+export const Actividades = ({ seleccionadasActuales, onSelectActividades }) => {
 
     const iconosActividades = {
         "caminar": caminar,
@@ -22,6 +22,14 @@ export const Actividades = () => {
 
     const [actividades, setActividades] = useState([]);
 
+    const toggle = (id) => {
+        const updated = seleccionadasActuales.includes(id)
+            ? seleccionadasActuales.filter(x => x !== id)
+            : [...seleccionadasActuales, id]
+
+        // Usamos la BOCA
+        onSelectActividades(updated)
+    };
     useEffect(() => {
         axios.get('http://localhost:8000/api/actividades/')
             .then(res => setActividades(res.data))
@@ -34,12 +42,13 @@ export const Actividades = () => {
             <Titulo nivel={2} className="titulo-actividades">Actividades</Titulo>
             <ul className="actividades-lista">
                 {actividades.map(act => (
-                    <li key={act.id} className="actividad-item">
+                    // Usamos los OJOS
+                    <li key={act.id} className={`actividad-item ${seleccionadasActuales.includes(act.id) ? 'seleccionada' : ''}`} onClick={() => toggle(act.id)} >
                         <img src={iconosActividades[act.nombre]} alt={act.nombre} className="actividad-item-img" />
                         <span className="titulo-texto">{act.nombre}</span>
                     </li>
                 ))}
             </ul>
         </section>
-    );
-}
+    )
+}
