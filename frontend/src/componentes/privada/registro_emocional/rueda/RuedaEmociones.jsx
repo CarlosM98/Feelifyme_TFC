@@ -5,12 +5,21 @@ import './RuedaEmociones.css';
 
 import { Titulo } from '../../../generales/titulos/Titulo';
 
-export const RuedaEmociones = () => {
-    const [data, setData] = useState(null);
+export const RuedaEmociones = ({ seleccionadasActuales, onSelectEmociones }) => {
+    const [rawArbol, setRawArbol] = useState(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
     const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+    const handleClick = (params) => {
+        const emocionId = params.data?.id;
+        if (!emocionId) return;
 
+        const updated = seleccionadasActuales.includes(emocionId)
+            ? seleccionadasActuales.filter(e => e !== emocionId)
+            : [...seleccionadasActuales, emocionId];
+        
+        onSelectEmociones(updated);
+    };
 
     const getBaseColor = (name) => {
         const lower = name.toLowerCase();
@@ -25,7 +34,7 @@ export const RuedaEmociones = () => {
     };
 
     // Función recursiva para adaptar y limpiar los datos para ECharts
-    const formatDataForEcharts = (nodes, parentColor = null) => {
+    const formatDataForEcharts = (nodes, parentColor = null, seleccionadasList = []) => {
         return nodes.map(node => {
             // Limpia paréntesis
             let nombreLimpio = node.name;
@@ -33,20 +42,33 @@ export const RuedaEmociones = () => {
                 nombreLimpio = nombreLimpio.split('(')[0].trim();
             }
 
-            // Asigna color base si es de nivel 1, si no, hereda y hace un pequeño fade (ECharts lo hace semi automático, pero lo forzamos visualmente si queremos)
+            // Asigna color base si es de nivel 1, si no, hereda
             const color = getBaseColor(node.name) || parentColor;
 
+            // Lógica de feedback visual interactivo:
+            const isSelected = seleccionadasList.includes(node.id);
+            const hasSelection = seleccionadasList.length > 0;
+
+            // Apagamos la seleccionada, dejamos el resto igual
+            const opacity = hasSelection ? (isSelected ? 0.35 : 1) : 1;
+            const borderColor = isSelected ? '#000000' : 'white';
+            const borderWidth = isSelected ? 3 : 1.5;
+
             const newNode = {
+                id: node.id,
                 name: nombreLimpio,
                 // Si es un nodo hoja (value), ECharts lo usa automáticamente para el tamaño de la cuña
                 value: node.loc || 1,
                 itemStyle: {
-                    color: color
+                    color: color,
+                    opacity: opacity,
+                    borderColor: borderColor,
+                    borderWidth: borderWidth
                 }
             };
 
             if (node.children && node.children.length > 0) {
-                newNode.children = formatDataForEcharts(node.children, color);
+                newNode.children = formatDataForEcharts(node.children, color, seleccionadasList);
                 delete newNode.value; // Los nodos padre en echarts calculan su valor sumando a sus hijos
             }
 
@@ -61,8 +83,7 @@ export const RuedaEmociones = () => {
                 const response = await axios.get(`${baseURL}/api/emociones/arbol/`);
                 // El endpoint de Django nos devuelve { name: "root", children: [...] }
                 // Pasamos únicamente .children para que no haya hueco en el centro
-                const echartsData = formatDataForEcharts(response.data.children);
-                setData(echartsData);
+                setRawArbol(response.data.children);
                 setLoading(false);
             } catch (err) {
                 console.error("Error cargando la rueda de emociones", err);
@@ -94,6 +115,8 @@ export const RuedaEmociones = () => {
     if (loading) return <div className="rueda-container">Cargando emociones...</div>;
     if (error) return <div className="rueda-container">{error}</div>;
 
+    const echartsData = rawArbol ? formatDataForEcharts(rawArbol, null, seleccionadasActuales) : null;
+
     const option = {
         tooltip: {
             trigger: 'item',
@@ -101,17 +124,15 @@ export const RuedaEmociones = () => {
         },
         series: {
             type: 'sunburst',
-            data: data,
+            data: echartsData,
             radius: [0, '95%'], // Empieza en 0 (sin hueco) y ocupa casi todo el tamaño
             sort: null, // Mantiene el orden exacto de los datos, sin ordenar por valor
-            nodeClick: 'rootToNode', // [Crucial para móvil] Al hacer clic hace zoom en la rama
+            nodeClick: windowWidth < 768 ? 'rootToNode' : false, // [Crucial] Zoom solo en móvil
             emphasis: {
                 focus: 'ancestor' // Al pasar el ratón, ilumina toda la rama desde el centro
             },
             itemStyle: {
-                borderRadius: 2,
-                borderWidth: 1.5,
-                borderColor: 'white'
+                borderRadius: 2
             },
             label: {
                 rotate: 'radial', // ¡Esto hace que giren del centro hacia afuera perfectamente!
@@ -154,6 +175,7 @@ export const RuedaEmociones = () => {
                     option={option}
                     style={{ height: '100%', width: '100%' }}
                     opts={{ renderer: 'svg' }} // SVG renderer for sharp text
+                    onEvents={{ click: handleClick }}
                 />
             </div>
         </section>
