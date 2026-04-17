@@ -1,0 +1,1 @@
+import{j as e}from"./index-BrlEFC2z.js";const r=()=>e.jsxs("div",{className:"curiosidades",children:[e.jsx("h1",{children:"Bienvenido a FeelifyMe"}),e.jsx("p",{children:"Usa el menú superior para navegar por las secciones."})]});export{r as Curiosidades};
