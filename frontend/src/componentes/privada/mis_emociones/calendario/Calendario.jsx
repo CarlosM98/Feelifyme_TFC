@@ -9,7 +9,8 @@ import {
     subMonths,
     format,
     isSameMonth,
-    isToday
+    isToday,
+    isAfter
 } from "date-fns";
 import { es } from "date-fns/locale";
 import { CasillaDia } from "./CasillaDia";
@@ -17,6 +18,7 @@ import "./calendario.css";
 import { GrupoBotones, Boton } from "../../../generales";
 
 export const Calendario = () => {
+
     const [mesActual, setMesActual] = useState(new Date())
 
     const inicioMes = startOfMonth(mesActual)
@@ -57,6 +59,7 @@ export const Calendario = () => {
                         fecha={dia}
                         esMesActual={isSameMonth(dia, mesActual)}
                         esHoy={isToday(dia)}
+                        esFuturo={isAfter(dia, new Date())}
                     />
                 ))}
             </div>

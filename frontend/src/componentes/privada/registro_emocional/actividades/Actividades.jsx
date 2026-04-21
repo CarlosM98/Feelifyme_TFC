@@ -7,18 +7,9 @@ import './actividades.css'
 
 import { Titulo } from "../../../generales";
 
-export const Actividades = ({ seleccionadasActuales, onSelectActividades }) => {
+import { ICONOS_ACTIVIDADES } from "../../../../utils/constants";
 
-    const iconosActividades = {
-        "caminar": caminar,
-        "cocinar": cocinar,
-        "correr": correr,
-        "deporte": deporte,
-        "socializar": socializar,
-        "tocar_instrumento": tocar_instrumento,
-        "leer": leer,
-        "meditar": meditar
-    }
+export const Actividades = ({ seleccionadasActuales, onSelectActividades }) => {
 
     const [actividades, setActividades] = useState([]);
 
@@ -44,7 +35,7 @@ export const Actividades = ({ seleccionadasActuales, onSelectActividades }) => {
                 {actividades.map(act => (
                     // Usamos los OJOS
                     <li key={act.id} className={`actividad-item ${seleccionadasActuales.includes(act.id) ? 'seleccionada' : ''}`} onClick={() => toggle(act.id)} >
-                        <img src={iconosActividades[act.nombre]} alt={act.nombre} className="actividad-item-img" />
+                        <img src={ICONOS_ACTIVIDADES[act.nombre]} alt={act.nombre} className="actividad-item-img" />
                         <span className="titulo-texto">{act.nombre}</span>
                     </li>
                 ))}
