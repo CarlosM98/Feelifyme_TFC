@@ -31,6 +31,9 @@
     padding-bottom: var(--space-xl);
 }
 
+
+
+/*css CasillaDia*/
 .nombre-dia {
     text-align: center;
     font-weight: bold;
@@ -38,6 +41,7 @@
 }
 
 .casilla-dia {
+    position: relative;
     background: var(--color-primary-soft);
     border-radius: var(--radius-md);
     padding: var(--space-sm);
@@ -71,4 +75,19 @@
     display: flex;
     gap: var(--space-xs);
     flex-wrap: wrap;
+}
+
+.mensaje-futuro {
+    position: absolute;
+    top: -30px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #fca5a5;
+    color: white;
+    padding: 4px 8px;
+    border-radius: 6px;
+    font-size: 0.7rem;
+    white-space: nowrap;
+    z-index: 10;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
 }
