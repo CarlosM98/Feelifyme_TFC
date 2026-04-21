@@ -1,37 +1,11 @@
 """
 URL configuration for backend project.
-
-The `urlpatterns` list routes URLs to views. For more information please see:
-    https://docs.djangoproject.com/en/6.0/topics/http/urls/
-Examples:
-Function views
-    1. Add an import:  from my_app import views
-    2. Add a URL to urlpatterns:  path('', views.home, name='home')
-Class-based views
-    1. Add an import:  from other_app.views import Home
-    2. Add a URL to urlpatterns:  path('', Home.as_view(), name='home')
-Including another URLconf
-    1. Import the include() function: from django.urls import include, path
-    2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
+Las rutas específicas de la app viven en backFeelifyme/urls.py.
 """
 from django.contrib import admin
-from django.urls import path
-from rest_framework_simplejwt.views import (
-    TokenObtainPairView,
-    TokenRefreshView,
-)
-from backFeelifyme.views import RegisterView, MeView, EmocionTreeView, ActividadListView, RegistroDiarioListView, EmocionRegistradaListView, ActividadRealizadaListView, CrearRegistroDiario
+from django.urls import path, include
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path("api/users/register/", RegisterView.as_view()),
-    path("api/users/login/", TokenObtainPairView.as_view()),
-    path("api/users/refresh/", TokenRefreshView.as_view()),
-    path("api/users/me/", MeView.as_view()),
-    path("api/emociones/arbol/", EmocionTreeView.as_view()),
-    path("api/actividades/", ActividadListView.as_view()),
-    path('api/registro-diario/', CrearRegistroDiario.as_view(), name='crear-registro-diario'),
-    path('api/registros/', RegistroDiarioListView.as_view()),
-    path('api/emociones-registradas/', EmocionRegistradaListView.as_view()),
-    path('api/actividades-realizadas/', ActividadRealizadaListView.as_view()),
+    path("admin/", admin.site.urls),
+    path("api/", include("backFeelifyme.urls")),
 ]

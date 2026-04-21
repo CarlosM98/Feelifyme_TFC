@@ -50,7 +50,6 @@ class UserSerializer(serializers.ModelSerializer):
         model = User
         fields = ["id", "username", "email", "profile"]
 
-
 class ActividadSerializer(serializers.ModelSerializer):
     class Meta:
         model = Actividad
@@ -101,6 +100,7 @@ class EmocionRegistradaSerializer(serializers.ModelSerializer):
         model = EmocionRegistrada
         fields = ["id", "emocion", "fecha", "registro"]
 
+
 class ActividadRealizadaSerializer(serializers.ModelSerializer):
     actividad = serializers.StringRelatedField()
     fecha = serializers.DateField(source="registro.fecha")
@@ -108,3 +108,27 @@ class ActividadRealizadaSerializer(serializers.ModelSerializer):
     class Meta:
         model = ActividadRealizada
         fields = ["id", "actividad", "fecha", "registro"]
+
+
+
+# Serializer para resumen de cada casilla diario del calendario
+class CalendarioResumenDiaSerializer(serializers.Serializer):
+    fecha = serializers.DateField()
+    emociones_primarias = serializers.ListField(
+        child=serializers.DictField()
+    )
+    actividades_preview = serializers.ListField(
+        child=serializers.DictField()
+    )
+    tiene_registro = serializers.BooleanField()
+
+
+class ResumenDiarioCronologicoSerializer(serializers.Serializer):
+    fecha = serializers.DateField()
+    emociones = serializers.ListField(
+        child=serializers.DictField()
+    )
+    actividades = serializers.ListField(
+        child=serializers.DictField()
+    )
+    tiene_registro = serializers.BooleanField()
