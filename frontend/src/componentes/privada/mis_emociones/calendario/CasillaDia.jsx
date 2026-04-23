@@ -1,9 +1,12 @@
 import { useState } from "react";
 import { format } from "date-fns";
 import { useNavigate } from "react-router-dom";
+import "./CasillaDia.css";
+import { COLORES_EMOCIONES, ICONOS_ACTIVIDADES } from "../../../../utils/constants";
 
-export const CasillaDia = ({ fecha, esMesActual, esHoy, esFuturo }) => {
+export const CasillaDia = ({ fecha, esMesActual, esHoy, esFuturo, emociones, actividades }) => {
     const navigate = useNavigate()
+
 
     const [mostrarMensaje, setMostrarMensaje] = useState(false);
 
@@ -16,7 +19,7 @@ export const CasillaDia = ({ fecha, esMesActual, esHoy, esFuturo }) => {
             return
         }
         else
-            navigate(`/dia/${fecha.toISOString().split("T")[0]}`)
+            navigate(`/resumen-diario-cronologico/${format(fecha, "yyyy-MM-dd")}`)
     }
 
     return (
@@ -32,7 +35,29 @@ export const CasillaDia = ({ fecha, esMesActual, esHoy, esFuturo }) => {
 
             <div className="numero-dia">{format(fecha, "d")}</div>
 
-            <div className="mini-emociones"></div>
+            <div className="mini-emociones">
+                <div className="emociones">
+                    {emociones.map((emocion, index) => (
+                        <div
+                            key={index}
+                            className="mini-emocion"
+                            style={{ backgroundColor: COLORES_EMOCIONES[emocion.nombre.toLowerCase()] }}
+                            title={emocion.nombre}
+                        />
+                    ))}
+                </div>
+                <div className="actividades">
+                    {actividades.map((actividad, index) => (
+                        <img
+                            key={index}
+                            src={ICONOS_ACTIVIDADES[actividad.nombre.toLowerCase()]}
+                            className="mini-actividad"
+                            alt={actividad.nombre}
+                            title={actividad.nombre}
+                        />
+                    ))}
+                </div>
+            </div>
         </article>
 
     )

@@ -22,10 +22,22 @@ export const Actividades = ({ seleccionadasActuales, onSelectActividades }) => {
         onSelectActividades(updated)
     };
     useEffect(() => {
-        axios.get('http://localhost:8000/api/actividades/')
-            .then(res => setActividades(res.data))
-            .catch(err => console.error(err));
-    }, [])
+        const fetchActividades = async () => {
+            try {
+                const token = localStorage.getItem("access");
+                const response = await axios.get("http://localhost:8000/api/actividades/", {
+                    headers: {
+                        Authorization: `Bearer ${token}`
+                    }
+                });
+                setActividades(response.data);
+            } catch (err) {
+                console.error("Error al cargar actividades:", err);
+            }
+        };
+
+        fetchActividades();
+    }, []);
 
 
     return (

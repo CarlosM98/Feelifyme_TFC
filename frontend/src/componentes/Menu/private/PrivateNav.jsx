@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom"
+import { Link, NavLink } from "react-router-dom"
 import { useAuth } from "../../../context/AuthContext"
 import { iconoLogo } from '../../../assets/images/menu'
 import { iconoLogout } from '../../../assets/images/private/menu'
@@ -17,12 +17,12 @@ export const PrivateNav = () => {
 
             <nav className="nav">
                 <ul className="lista-menu">
-                    <li><Link to="/">Inicio</Link></li>
-                    <li><Link to="/calendario">Mis emociones</Link></li>
-                    <li><Link to="/estadisticas">Mi evolución</Link></li>
-                    <li><Link to="/recomendaciones">Recomendaciones</Link></li>
-                    <li><Link to="/logros">Logros</Link></li>
-                    <li><Link to="/perfil">Perfil</Link></li>
+                    <li><NavLink to="/" className={({ isActive }) => (isActive ? "activo" : "")}>Inicio</NavLink></li>
+                    <li><NavLink to="/calendario" className={({ isActive }) => (isActive ? "activo" : "")}>Mis emociones</NavLink></li>
+                    <li><NavLink to="/estadisticas" className={({ isActive }) => (isActive ? "activo" : "")}>Mi evolución</NavLink></li>
+                    <li><NavLink to="/recomendaciones" className={({ isActive }) => (isActive ? "activo" : "")}>Recomendaciones</NavLink></li>
+                    <li><NavLink to="/logros" className={({ isActive }) => (isActive ? "activo" : "")}>Logros</NavLink></li>
+                    <li><NavLink to="/perfil" className={({ isActive }) => (isActive ? "activo" : "")}>Perfil</NavLink></li>
                 </ul>
             </nav>
 
