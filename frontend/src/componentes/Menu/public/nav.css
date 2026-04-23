@@ -8,6 +8,8 @@ header {
     z-index: 1000;
     justify-content: space-between;
     background-color: var(--bg-nav);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
 }
 
 .logo-nav {
@@ -21,7 +23,7 @@ header {
     order: 1;
 }
 
-header > a {
+header>a {
     order: 2;
 }
 
@@ -53,6 +55,8 @@ header > a {
 
 .activo {
     font-weight: bold;
+    color: var(--color-primary-dark);
+    border-bottom: 2px solid var(--color-primary-dark);
 }
 
 .lista-menu li {
@@ -68,7 +72,7 @@ header > a {
     display: none;
 }
 
-#menu-hamb:checked ~ nav .lista-menu {
+#menu-hamb:checked~nav .lista-menu {
     display: flex;
     background-color: var(--bg-card);
     position: fixed;
@@ -81,7 +85,7 @@ header > a {
     content: "☰";
 }
 
-#menu-hamb:checked + .hamburguesa::after {
+#menu-hamb:checked+.hamburguesa::after {
     content: "✖";
 }
 
@@ -135,7 +139,7 @@ header > a {
         filter: drop-shadow(5px 8px 8px rgba(0, 0, 0, 0.3));
     }
 
-    header > a {
+    header>a {
         order: 1;
     }
 

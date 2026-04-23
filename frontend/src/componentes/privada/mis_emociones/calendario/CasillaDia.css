@@ -1,0 +1,117 @@
+/* Mobile First: Diseño para móviles por defecto */
+.casilla-dia {
+    position: relative;
+    background: var(--color-primary-soft);
+    border-radius: var(--radius-md);
+    padding: var(--space-xs);
+    min-height: 60px;
+    cursor: pointer;
+    transition: background var(--tr-fast);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.casilla-dia.fuera-mes {
+    opacity: 0.35;
+}
+
+.casilla-dia.hoy {
+    border: 2px solid var(--color-secondary);
+}
+
+.numero-dia {
+    font-size: 0.9rem;
+    font-weight: bold;
+    color: var(--color-primary-dark);
+}
+
+.mini-emociones {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    padding-bottom: 2px;
+}
+
+.emociones {
+    display: flex;
+    gap: 3px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.actividades {
+    display: flex;
+    gap: 3px;
+    flex-wrap: wrap;
+    justify-content: center;
+    /* Centra los iconos */
+}
+
+.mini-emocion {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.mini-actividad {
+    width: 14px;
+    height: 14px;
+    object-fit: contain;
+}
+
+.mensaje-futuro {
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    right: 5px;
+    background-color: var(--color-bad);
+    color: white;
+    padding: 4px;
+    border-radius: var(--radius-sm);
+    font-size: 0.6rem;
+    text-align: center;
+    z-index: 10;
+    box-shadow: var(--shadow-soft);
+}
+
+@media (min-width: 768px) {
+    .casilla-dia {
+        min-height: 90px;
+        padding: var(--space-sm);
+    }
+
+    .casilla-dia:hover {
+        background: var(--color-primary-hover);
+    }
+
+    .numero-dia {
+        font-size: 1.2rem;
+    }
+
+    .mini-emociones {
+        gap: 6px;
+    }
+
+    .mini-emocion {
+        width: 10px;
+        height: 10px;
+    }
+
+    .mini-actividad {
+        width: 22px;
+        height: 22px;
+    }
+
+    .mensaje-futuro {
+        top: -15px;
+        left: 50%;
+        right: auto;
+        transform: translateX(-50%);
+        font-size: 0.75rem;
+        width: max-content;
+    }
+}

@@ -1,8 +1,6 @@
-import { Link } from "react-router-dom"
-import { useEffect } from "react"
+import { Link, NavLink } from "react-router-dom"
 import { iconoLogo, iconoAcceso } from '../../../assets/images/menu'
 import './nav.css'
-
 
 export const Nav = () => {
     return (
@@ -16,11 +14,11 @@ export const Nav = () => {
 
             <nav className="nav">
                 <ul className="lista-menu">
-                    <li><Link to="/">Inicio</Link></li>
-                    <li><Link to="/sobre-nosotros">Sobre Nosotros</Link></li>
-                    <li><Link to="/como-funciona">Cómo Funciona</Link></li>
-                    <li><Link to="/curiosidades">Curiosidades</Link></li>
-                    <li><Link to="/contacto">Contacto</Link></li>
+                    <li><NavLink to="/" className={({ isActive }) => (isActive ? "activo" : "")}>Inicio</NavLink></li>
+                    <li><NavLink to="/sobre-nosotros" className={({ isActive }) => (isActive ? "activo" : "")}>Sobre Nosotros</NavLink></li>
+                    <li><NavLink to="/como-funciona" className={({ isActive }) => (isActive ? "activo" : "")}>Cómo Funciona</NavLink></li>
+                    <li><NavLink to="/curiosidades" className={({ isActive }) => (isActive ? "activo" : "")}>Curiosidades</NavLink></li>
+                    <li><NavLink to="/contacto" className={({ isActive }) => (isActive ? "activo" : "")}>Contacto</NavLink></li>
                 </ul>
             </nav>
             <Link to="/login" className="acceso-nav">

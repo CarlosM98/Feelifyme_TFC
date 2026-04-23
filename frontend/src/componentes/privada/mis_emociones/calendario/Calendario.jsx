@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import axios from "axios";
 import {
     startOfMonth,
     endOfMonth,
@@ -32,6 +33,31 @@ export const Calendario = () => {
         end: finCuadricula
     })
 
+    const [datosMes, setDatosMes] = useState({})
+
+    useEffect(() => {
+        const cargarResumen = async () => {
+            const mesStr = format(mesActual, "yyyy-MM");
+            const token = localStorage.getItem("access");
+            try {
+                const res = await axios.get(`http://localhost:8000/api/calendario/resumen/?mes=${mesStr}`, {
+                    headers: { Authorization: `Bearer ${token}` }
+                });
+                const mapaDatos = {};
+                res.data.forEach(dia => {
+                    mapaDatos[dia.fecha] = dia;
+                });
+                setDatosMes(mapaDatos);
+            } catch (err) {
+                console.error("Error al cargar calendario", err);
+            }
+        };
+
+        cargarResumen();
+    }, [mesActual]);
+
+
+
     return (
         <section className="calendario-container">
             <header className="calendario-header">
@@ -53,15 +79,21 @@ export const Calendario = () => {
             </ul>
 
             <div className="grid-calendario">
-                {dias.map((dia) => (
-                    <CasillaDia
-                        key={dia.toISOString()}
-                        fecha={dia}
-                        esMesActual={isSameMonth(dia, mesActual)}
-                        esHoy={isToday(dia)}
-                        esFuturo={isAfter(dia, new Date())}
-                    />
-                ))}
+                {dias.map((dia) => {
+                    const fechaStr = format(dia, "yyyy-MM-dd");
+                    const dataDia = datosMes[fechaStr];
+                    return (
+                        <CasillaDia
+                            key={dia.toISOString()}
+                            fecha={dia}
+                            esMesActual={isSameMonth(dia, mesActual)}
+                            esHoy={isToday(dia)}
+                            esFuturo={isAfter(dia, new Date())}
+                            emociones={dataDia?.emociones_primarias || []}
+                            actividades={dataDia?.actividades_preview || []}
+                        />
+                    )
+                })}
             </div>
             <GrupoBotones>
                 <Boton texto='Ver estadísticas' to='#' />
