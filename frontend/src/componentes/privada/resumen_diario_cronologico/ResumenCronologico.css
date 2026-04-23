@@ -1,0 +1,164 @@
+.resumen-cronologico-container {
+    width: 100%;
+    margin: 0 auto;
+    padding: var(--space-md) var(--space-page);
+    display: flex;
+    flex-direction: column;
+}
+
+/* Header Estilizado y Responsivo */
+.resumen-header {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-md);
+    margin-bottom: var(--space-lg);
+    z-index: 10;
+    /* Suficiente pero por debajo del NAV (1000) */
+}
+
+.btn-back {
+    background: var(--color-primary-dark);
+    color: white;
+    border: none;
+    padding: var(--space-sm) var(--space-md);
+    border-radius: var(--radius-md);
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 0.9rem;
+    transition: var(--tr-fast);
+    box-shadow: var(--shadow-soft);
+}
+
+.btn-back:hover {
+    filter: brightness(1.2);
+    transform: translateX(-2px);
+}
+
+.resumen-header h1 {
+    font-size: 1.3rem;
+    color: var(--color-secondary-dark);
+    line-height: 1.2;
+}
+
+/* Layout de Tarjetas Responsivo */
+.lista-registros {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md);
+}
+
+.tarjeta-registro {
+    background-color: var(--bg-card);
+    border-radius: var(--radius-lg);
+    padding: var(--space-md);
+    box-shadow: var(--shadow-soft);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md);
+    border-left: 6px solid var(--color-accent);
+}
+
+.hora-badge {
+    background: var(--color-primary-soft);
+    color: var(--color-primary-dark);
+    padding: var(--space-xs) var(--space-sm);
+    border-radius: var(--radius-sm);
+    font-weight: bold;
+    width: fit-content;
+    font-size: 0.85rem;
+}
+
+/* Grupo de Datos */
+.grupo {
+    margin-bottom: var(--space-sm);
+}
+
+.grupo strong {
+    display: block;
+    font-size: 0.75rem;
+    color: var(--text-soft);
+    margin-bottom: var(--space-xs);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.chips {
+    display: flex;
+    gap: var(--space-xs);
+    flex-wrap: wrap;
+}
+
+.chip {
+    padding: 2px 8px;
+    border-radius: var(--radius-md);
+    font-size: 0.8rem;
+    font-weight: 600;
+}
+
+.iconos {
+    display: flex;
+    gap: var(--space-sm);
+}
+
+.img-actividad {
+    width: 32px;
+    height: 32px;
+    object-fit: contain;
+}
+
+.nota {
+    font-style: italic;
+    background: rgba(0, 0, 0, 0.03);
+    padding: var(--space-sm);
+    border-radius: var(--radius-md);
+    color: var(--text-main);
+    font-size: 0.9rem;
+    margin-top: var(--space-sm);
+}
+
+/* BREAKPOINTS (Responsividad) */
+
+/* TABLET */
+@media (min-width: 768px) {
+    .resumen-cronologico-container {
+        max-width: 800px;
+        padding-top: var(--space-xl);
+    }
+
+    .resumen-header {
+        flex-direction: row;
+        align-items: center;
+        gap: var(--space-xl);
+    }
+
+    .resumen-header h1 {
+        font-size: 1.8rem;
+    }
+
+    .tarjeta-registro {
+        flex-direction: row;
+        padding: var(--space-lg);
+    }
+
+    .hora-badge {
+        font-size: 1rem;
+        padding: var(--space-sm);
+    }
+}
+
+/* DESKTOP */
+@media (min-width: 1024px) {
+    .resumen-cronologico-container {
+        max-width: 900px;
+    }
+
+    .tarjeta-registro {
+        transition: var(--tr-normal);
+    }
+
+    .tarjeta-registro:hover {
+        transform: translateY(-4px);
+        box-shadow: var(--shadow-card);
+    }
+}

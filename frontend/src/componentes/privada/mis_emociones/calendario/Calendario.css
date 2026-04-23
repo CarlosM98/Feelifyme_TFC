@@ -1,93 +1,87 @@
 .calendario-container {
-    max-width: 900px;
+    width: 100%;
     margin: 0 auto;
-    padding: var(--space-md) var(--space-page);
+    padding: calc(var(--space-xl) + 2rem) var(--space-sm) var(--space-md);
 }
 
 .calendario-header {
     display: flex;
-    margin-bottom: var(--space-xl);
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: var(--space-lg);
+    padding: 1rem var(--space-xs);
+    position: sticky;
+    top: 3.5rem;
+    z-index: 100;
+
+    background-color: var(--bg-nav);
+    backdrop-filter: blur(10%);
+    -webkit-backdrop-filter: blur(10px);
+    box-shadow: 0 4px 10px -10px rgba(0, 0, 0, 0.1);
 }
 
 .calendario-header h2 {
     flex: 1;
-    padding: 0;
-    align-self: center;
+    font-size: 1.1rem;
+    text-transform: capitalize;
+    color: var(--color-secondary-dark);
+    font-family: "quicksand-bold";
+    margin: 0;
+    text-align: center;
 }
-
 
 .izquierda,
 .derecha {
-    font-size: 1.5rem;
-    padding: 0 var(--space-sm);
-    margin: 0 auto;
+    background: var(--bg-card);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-sm);
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     cursor: pointer;
+    font-size: 1.2rem;
+    transition: var(--tr-fast);
 }
 
 .grid-calendario {
     display: grid;
     grid-template-columns: repeat(7, 1fr);
-    gap: var(--space-sm);
-    padding-bottom: var(--space-xl);
+    gap: 4px;
+    padding-bottom: var(--space-lg);
 }
 
-
-
-/*css CasillaDia*/
 .nombre-dia {
     text-align: center;
     font-weight: bold;
-    color: var(--color-primary-dark);
+    font-size: 0.75rem;
+    color: var(--text-soft);
+    padding-bottom: var(--space-xs);
+    text-transform: uppercase;
 }
 
-.casilla-dia {
-    position: relative;
-    background: var(--color-primary-soft);
-    border-radius: var(--radius-md);
-    padding: var(--space-sm);
-    min-height: 90px;
-    cursor: pointer;
-    transition: background var(--tr-fast);
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-}
+@media (min-width: 768px) {
+    .calendario-container {
+        max-width: 900px;
+        padding: 0 var(--space-page) var(--space-xl) var(--space-page);
+    }
 
-.casilla-dia:hover {
-    background: var(--color-primary-hover);
-}
+    .calendario-header h2 {
+        font-size: 1.6rem;
+    }
 
-.casilla-dia.fuera-mes {
-    opacity: 0.35;
-}
+    .izquierda:hover,
+    .derecha:hover {
+        background: var(--color-primary-hover);
+        transform: scale(1.1);
+    }
 
-.casilla-dia.hoy {
-    border: 3px solid var(--color-secondary);
-}
+    .grid-calendario {
+        gap: var(--space-sm);
+    }
 
-.numero-dia {
-    font-size: 1.2rem;
-    font-weight: bold;
-    color: var(--color-primary-dark);
-}
-
-.mini-emociones {
-    display: flex;
-    gap: var(--space-xs);
-    flex-wrap: wrap;
-}
-
-.mensaje-futuro {
-    position: absolute;
-    top: -30px;
-    left: 50%;
-    transform: translateX(-50%);
-    background-color: #fca5a5;
-    color: white;
-    padding: 4px 8px;
-    border-radius: 6px;
-    font-size: 0.7rem;
-    white-space: nowrap;
-    z-index: 10;
-    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    .nombre-dia {
+        font-size: 0.9rem;
+    }
 }

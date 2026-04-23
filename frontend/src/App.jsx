@@ -20,6 +20,7 @@ const NotFoundPage = lazy(() => import('./pages/public/NotFoundPage.jsx').then(m
 
 const MisEmociones = lazy(() => import('./pages/private/MisEmociones.jsx').then(m => ({ default: m.MisEmociones })));
 const RegistroEmocion = lazy(() => import('./pages/private/RegistroEmocion.jsx').then(m => ({ default: m.RegistroEmocion })));
+const ResumenDiarioCronológico = lazy(() => import('./pages/private/ResumenDiarioCronológico.jsx').then(m => ({ default: m.ResumenDiarioCronológico })));
 
 import { PublicLayout, LayoutApp, PrivateLayout } from './layouts';
 
@@ -46,6 +47,7 @@ function App() {
               <Route element={<PrivateLayout />}>
                 <Route path="/calendario" element={<MisEmociones />} />
                 <Route path="/registro-emocion" element={<RegistroEmocion />} />
+                <Route path="/resumen-diario-cronologico/:fecha" element={<ResumenDiarioCronológico />} />
               </Route>
 
             </Route>
