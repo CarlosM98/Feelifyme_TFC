@@ -18,7 +18,7 @@ export const PrivateNav = () => {
             <nav className="nav">
                 <ul className="lista-menu">
                     <li><NavLink to="/" className={({ isActive }) => (isActive ? "activo" : "")}>Inicio</NavLink></li>
-                    <li><NavLink to="/calendario" className={({ isActive }) => (isActive ? "activo" : "")}>Mis emociones</NavLink></li>
+                    <li><NavLink to="/mis-emociones" className={({ isActive }) => (isActive ? "activo" : "")}>Mis emociones</NavLink></li>
                     <li><NavLink to="/estadisticas" className={({ isActive }) => (isActive ? "activo" : "")}>Mi evolución</NavLink></li>
                     <li><NavLink to="/recomendaciones" className={({ isActive }) => (isActive ? "activo" : "")}>Recomendaciones</NavLink></li>
                     <li><NavLink to="/logros" className={({ isActive }) => (isActive ? "activo" : "")}>Logros</NavLink></li>
