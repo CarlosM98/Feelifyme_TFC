@@ -1,10 +1,10 @@
 import { Outlet } from "react-router-dom";
-import { useState } from "react";
-
+import "../styles/layout.css";
 
 export const LayoutApp = () => {
-    return <>
-        <Outlet />
-    </>
-}
-
+    return (
+        <div className="estructura">
+            <Outlet />
+        </div>
+    );
+};
