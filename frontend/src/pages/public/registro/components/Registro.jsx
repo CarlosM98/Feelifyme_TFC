@@ -1,10 +1,8 @@
 import { useState, useEffect } from "react"
-import axios from "axios"
 import { useNavigate } from "react-router-dom"
+import { registerRequest } from "../../../../services/authService"
 
 export const Registro = () => {
-
-    
     const navigate = useNavigate()
 
     const [form, setForm] = useState({
@@ -22,17 +20,15 @@ export const Registro = () => {
     const [success, setSuccess] = useState(false)
 
     const onChange = (e) => { 
-        setForm({ ...form, [e.target.name]: e.target.value 
-
-        })
+        setForm({ ...form, [e.target.name]: e.target.value })
     }
 
     const onSubmit = async (e) => {
         e.preventDefault()
-
         setErrores({})
         setMensajes(null)
 
+        // Validaciones básicas
         if (!form.nombre || !form.apellido1 || !form.correo || !form.contrasenha || !form.confirmarContrasenha) {
             setMensajes("Todos los campos obligatorios deben estar completos")
             return
@@ -57,70 +53,63 @@ export const Registro = () => {
 
         try {
             setLoading(true)
-            const response = await axios.post(
-                "http://localhost:8000/api/users/register/",
-                form
-            )
-
-            setMensajes(response.data.message)
-
+            const data = await registerRequest(form);
+            setMensajes(data.message)
             setSuccess(true)
-
         } catch (error) {
             if (error.response)
                 setMensajes("Error: " + JSON.stringify(error.response.data))
             else
                 setMensajes("Error de conexión con el servidor")
-        }  finally {
+        } finally {
             setLoading(false)
         }
     }
 
     useEffect(() => {
         if (success) {
-            navigate("/login")
+            const timer = setTimeout(() => navigate("/login"), 2000);
+            return () => clearTimeout(timer);
         }
     }, [success, navigate])
 
     return <form onSubmit={onSubmit} className="form">
         <div className="conjunto">
             <label htmlFor="nombre">Nombre</label>
-            <input type="text" id="nombre" name="nombre" value={form.nombre} onChange={onChange} placeholder="Ruth" />
+            <input type="text" id="nombre" name="nombre" value={form.nombre} onChange={onChange} placeholder="Nombre" disabled={loading} />
         </div>
 
         <div className="conjunto">
             <label htmlFor="apellido1">Primer apellido</label>
-            <input type="text" id="apellido1" name="apellido1" value={form.apellido1} onChange={onChange} placeholder="González@gmail.com" />
+            <input type="text" id="apellido1" name="apellido1" value={form.apellido1} onChange={onChange} placeholder="Primer apellido" disabled={loading} />
         </div>
 
         <div className="conjunto">
             <label htmlFor="apellido2">Segundo apellido</label>
-            <input type="text" id="apellido2" name="apellido2" value={form.apellido2} onChange={onChange} placeholder="Pérez" />
+            <input type="text" id="apellido2" name="apellido2" value={form.apellido2} onChange={onChange} placeholder="Segundo apellido" disabled={loading} />
         </div>
 
         <div className="conjunto">
             <label htmlFor="correo">Correo electrónico</label>
-            <input type="email" id="correo" name="correo" value={form.correo} onChange={onChange} placeholder="ruth@gmail.com" />
+            <input type="email" id="correo" name="correo" value={form.correo} onChange={onChange} placeholder="email@ejemplo.com" disabled={loading} />
             {errores.correo && <p className="error">{errores.correo}</p>}
         </div>
 
         <div className="conjunto">
             <label htmlFor="contrasenha">Contraseña</label>
-            <input type="password" id="contrasenha" name="contrasenha" value={form.contrasenha} onChange={onChange} placeholder="Contraseña" />
+            <input type="password" id="contrasenha" name="contrasenha" value={form.contrasenha} onChange={onChange} placeholder="********" disabled={loading} />
             {errores.contrasenha && <p className="error">{errores.contrasenha}</p>}
-
         </div>
 
         <div className="conjunto">
             <label htmlFor="confirmarContrasenha">Confirmar contraseña</label>
-            <input type="password" id="confirmarContrasenha" name="confirmarContrasenha" value={form.confirmarContrasenha} onChange={onChange} placeholder="Contraseña"></input>
-            {errores.contrasenha && <p className="error">{errores.contrasenha}</p>}
+            <input type="password" id="confirmarContrasenha" name="confirmarContrasenha" value={form.confirmarContrasenha} onChange={onChange} placeholder="********" disabled={loading} />
         </div>
 
-        {mensajes && <p className="error">{mensajes}</p>}
+        {mensajes && <p className={success ? "success-msg" : "error"}>{mensajes}</p>}
 
-        <button disabled={loading} type="submit">{ loading ? "Enviando..." : "Enviar" }</button>
+        <button disabled={loading} type="submit">
+            { loading ? "Enviando..." : "Registrarme" }
+        </button>
     </form>
-
 }
-

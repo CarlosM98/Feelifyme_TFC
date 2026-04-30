@@ -1,5 +1,4 @@
-import { useState, useEffect } from "react";
-import axios from "axios";
+import { useState } from "react";
 import {
     startOfMonth,
     endOfMonth,
@@ -15,16 +14,17 @@ import {
 } from "date-fns";
 import { es } from "date-fns/locale";
 import { CasillaDia } from "./CasillaDia";
-import "./calendario.css";
+import { useCalendario } from "../../../../../hooks/useCalendario";
 import { ButtonGroup, Button } from "../../../../../componentes/generales";
+import "./calendario.css";
 
 export const Calendario = () => {
 
     const [mesActual, setMesActual] = useState(new Date())
+    const { datosCalendario, loading } = useCalendario(mesActual);
 
     const inicioMes = startOfMonth(mesActual)
     const finMes = endOfMonth(mesActual)
-
     const inicioCuadricula = startOfWeek(inicioMes, { weekStartsOn: 1 })
     const finCuadricula = endOfWeek(finMes, { weekStartsOn: 1 })
 
@@ -32,31 +32,6 @@ export const Calendario = () => {
         start: inicioCuadricula,
         end: finCuadricula
     })
-
-    const [datosMes, setDatosMes] = useState({})
-
-    useEffect(() => {
-        const cargarResumen = async () => {
-            const mesStr = format(mesActual, "yyyy-MM");
-            const token = localStorage.getItem("access");
-            try {
-                const res = await axios.get(`http://localhost:8000/api/calendario/resumen/?mes=${mesStr}`, {
-                    headers: { Authorization: `Bearer ${token}` }
-                });
-                const mapaDatos = {};
-                res.data.forEach(dia => {
-                    mapaDatos[dia.fecha] = dia;
-                });
-                setDatosMes(mapaDatos);
-            } catch (err) {
-                console.error("Error al cargar calendario", err);
-            }
-        };
-
-        cargarResumen();
-    }, [mesActual]);
-
-
 
     return (
         <section className="calendario-container">
@@ -72,6 +47,8 @@ export const Calendario = () => {
                 </button>
             </header>
 
+            {loading && <div className="cargando-overlay">Cargando...</div>}
+
             <ul className="grid-calendario nombres-dias">
                 {["Lun", "Mar", "Mié", "Jue", "Vie", "Sáb", "Dom"].map((d) => (
                     <li key={d} className="nombre-dia">{d}</li>
@@ -81,7 +58,7 @@ export const Calendario = () => {
             <div className="grid-calendario">
                 {dias.map((dia) => {
                     const fechaStr = format(dia, "yyyy-MM-dd");
-                    const dataDia = datosMes[fechaStr];
+                    const dataDia = datosCalendario[fechaStr];
                     return (
                         <CasillaDia
                             key={dia.toISOString()}
@@ -100,6 +77,5 @@ export const Calendario = () => {
                 <Button texto='Registro diario' to='/mis-emociones/registro-emocion' />
             </ButtonGroup>
         </section>
-
     );
 };

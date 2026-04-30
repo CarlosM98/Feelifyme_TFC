@@ -1,12 +1,10 @@
 import { useState } from "react"
-import { Link } from "react-router-dom"
-import "./Login.css"
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom"
 import { useAuth } from "../../../../context/AuthContext";
-import axios from "axios";
+import { loginRequest } from "../../../../services/authService";
+import "./Login.css"
 
 export const Login = () => {
-
     const navigate = useNavigate();
     const { login } = useAuth();
 
@@ -14,38 +12,40 @@ export const Login = () => {
         usuario: '',
         contrasenha: ''
     })
+    const [error, setError] = useState('')
+    const [loading, setLoading] = useState(false)
 
     const onChange = (e) => {
         setForm({
             ...form, [e.target.name]: e.target.value
-
         })
     }
-
-    const [error, setError] = useState('')
 
     const onSubmit = async (e) => {
         e.preventDefault()
         if (!form.usuario || !form.contrasenha) {
+            setError("Por favor, rellena todos los campos.");
             return
         }
 
         try {
-            const response = await axios.post(
-                "http://localhost:8000/api/users/login/",
-                {
-                    username: form.usuario,
-                    password: form.contrasenha
-                }
-            )
+            setLoading(true);
+            setError("");
+            const data = await loginRequest(form.usuario, form.contrasenha);
 
-            login(response.data.access, response.data.refresh);
+            // Guardamos los tokens en el contexto global
+            login(data.access, data.refresh);
+            
+            // Redirigimos al área privada
             navigate("/mis-emociones")
         } catch (err) {
-            if (err.response?.status === 401)
-                setError("Usuario o contraseña incorrectos")
-            else
-                setError("Error inesperado")
+            if (err.response?.status === 401) {
+                setError("Usuario o contraseña incorrectos");
+            } else {
+                setError("Error al conectar con el servidor. Inténtalo más tarde.");
+            }
+        } finally {
+            setLoading(false);
         }
     }
 
@@ -53,23 +53,40 @@ export const Login = () => {
         <form onSubmit={onSubmit} className="form">
             <div className="conjunto">
                 <label htmlFor="usuario">Email</label>
-                <input type="email" id="usuario" name="usuario" value={form.usuario} onChange={onChange} placeholder="Correo electrónico" />
+                <input 
+                    type="email" 
+                    id="usuario" 
+                    name="usuario" 
+                    value={form.usuario} 
+                    onChange={onChange} 
+                    placeholder="Correo electrónico" 
+                    disabled={loading}
+                />
             </div>
 
             <div className="conjunto">
                 <label htmlFor="contrasenha">Contraseña</label>
-                <input type="password" id="contrasenha" name="contrasenha" value={form.contrasenha} onChange={onChange} placeholder="Contraseña" />
+                <input 
+                    type="password" 
+                    id="contrasenha" 
+                    name="contrasenha" 
+                    value={form.contrasenha} 
+                    onChange={onChange} 
+                    placeholder="Contraseña" 
+                    disabled={loading}
+                />
             </div>
 
             {error && <p className="error">{error}</p>}
 
             <Link to="#">He olvidado mi contraseña</Link>
 
-            <button type="submit">Enviar</button>
+            <button type="submit" disabled={loading}>
+                {loading ? "Entrando..." : "Enviar"}
+            </button>
 
             <p>¿No estás registrado?</p>
             <Link to="/registro">Registrarse</Link>
         </form>
     </>
 }
-

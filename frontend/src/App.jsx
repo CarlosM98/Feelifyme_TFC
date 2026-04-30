@@ -6,7 +6,7 @@ import { useState } from 'react';
 import "./styles/comun.css";
 
 import { Suspense, lazy } from 'react';
-import { Spinner } from './componentes/generales/spinner/Spinner';
+import { Spinner } from './componentes/generales/spinners/Spinner';
 
 // Imports Perezosos (Generan chunks separados al compilar para optimización E2E)
 const Inicio = lazy(() => import('./pages/public/inicio/Inicio.jsx').then(m => ({ default: m.Inicio })));
