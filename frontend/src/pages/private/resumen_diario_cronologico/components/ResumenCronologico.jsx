@@ -1,38 +1,18 @@
-import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import axios from "axios";
 import { format, parseISO } from "date-fns";
 import { es } from "date-fns/locale";
-
 import "./ResumenCronologico.css";
 import { useEmotionalAssets } from "../../../../hooks/useEmotionalAssets";
+import { useResumenDiario } from "../../../../hooks/useResumenDiario";
 
-export const ResumenCronologico = () => {
+export const ReSumenCronologico = () => {
     const { fecha } = useParams();
     const navigate = useNavigate();
     const { getEmocionColor, getActivityIcon } = useEmotionalAssets();
-    const [datos, setDatos] = useState(null);
-    const [cargando, setCargando] = useState(true);
+    const { resumen, loading } = useResumenDiario(fecha);
 
-    useEffect(() => {
-        const fetchResumen = async () => {
-            try {
-                const token = localStorage.getItem("access");
-                const response = await axios.get(`http://localhost:8000/api/resumen-dia/?fecha=${fecha}`, {
-                    headers: { Authorization: `Bearer ${token}` }
-                });
-                setDatos(response.data);
-            } catch (err) {
-                console.error("Error:", err);
-            } finally {
-                setCargando(false);
-            }
-        };
-        if (fecha) fetchResumen();
-    }, [fecha]);
-
-    if (cargando) return <div className="resumen-feedback">Cargando...</div>;
-    if (!datos || datos.registros.length === 0) return <div className="resumen-feedback">No hay registros para este día.</div>;
+    if (loading) return <div className="resumen-feedback">Cargando...</div>;
+    if (!resumen || resumen.registros.length === 0) return <div className="resumen-feedback">No hay registros para este día.</div>;
 
     const fechaTxt = format(parseISO(fecha), "EEEE, d 'de' MMMM", { locale: es });
 
@@ -44,7 +24,7 @@ export const ResumenCronologico = () => {
             </header>
 
             <div className="lista-registros">
-                {datos.registros.map(reg => (
+                {resumen.registros.map(reg => (
                     <article key={reg.id} className="tarjeta-registro">
                         <div className="hora-badge">{reg.hora.substring(0, 5)}</div>
 

@@ -1,15 +1,21 @@
 import { useState } from "react";
 import { RuedaEmociones, Actividades, NotasDiarias } from "./";
 import { ButtonGroup, Button } from "../../../../componentes/generales";
-import axios from "axios";
+import { postRegistroDiario } from "../../../../services/diaryService";
 
 export const RegistroEmocionContainer = () => {
 
     const [emociones, setEmociones] = useState([])
     const [actividades, setActividades] = useState([])
     const [nota, setNota] = useState("")
+    const [enviando, setEnviando] = useState(false)
 
     const guardar = async () => {
+        if (emociones.length === 0) {
+            alert("Por favor, selecciona al menos una emoción.");
+            return;
+        }
+
         const payload = {
             fecha: new Date().toISOString().split("T")[0],
             notas: nota,
@@ -17,33 +23,27 @@ export const RegistroEmocionContainer = () => {
             actividades
         }
 
-        let token = localStorage.getItem("access") || "";
-        token = token.replace(/['"]+/g, '').trim(); // Elimina comillas o espacios accidentales
-
         try {
-            await axios.post("http://localhost:8000/api/registro-diario/", payload, {
-                headers: {
-                    Authorization: `Bearer ${token}`
-                }
-            })
-            // alert("Registro guardado exitosamente!")
+            setEnviando(true);
+            await postRegistroDiario(payload);
+            
+            // Si tiene éxito, limpiamos el formulario
             setNota("");
             setEmociones([]);
             setActividades([]);
+            alert("¡Registro guardado exitosamente!");
         } catch (error) {
-            console.error(error)
-            if (error.response) {
-                alert("Error del servidor: " + JSON.stringify(error.response.data));
-            } else {
-                alert("Error de red: " + error.message);
-            }
+            console.error("Error al guardar registro:", error);
+            alert("Hubo un error al guardar tu registro. Inténtalo de nuevo.");
+        } finally {
+            setEnviando(false);
         }
     }
 
     return <>
         <RuedaEmociones
-            seleccionadasActuales={emociones}   // Ojos: Toma tu array, léelo para pintarte
-            onSelectEmociones={setEmociones}    // Boca: Toma la función para poder modificar el array
+            seleccionadasActuales={emociones}
+            onSelectEmociones={setEmociones}
         />
         <Actividades
             seleccionadasActuales={actividades}
@@ -52,7 +52,11 @@ export const RegistroEmocionContainer = () => {
         <NotasDiarias value={nota} onChangeNota={setNota} />
 
         <ButtonGroup>
-            <Button texto="Guardar registro" onClick={guardar} />
+            <Button 
+                texto={enviando ? "Guardando..." : "Guardar registro"} 
+                onClick={guardar} 
+                disabled={enviando}
+            />
         </ButtonGroup>
     </>
 }
