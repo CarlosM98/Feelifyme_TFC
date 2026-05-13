@@ -21,3 +21,28 @@ export const registerRequest = async (userData) => {
     const response = await api.post('users/register/', userData);
     return response.data;
 };
+
+/**
+ * Obtiene los datos del perfil del usuario actual (GET).
+ */
+export const getMyProfile = async () => {
+    const response = await api.get('users/me/');
+    return response.data;
+};
+
+/**
+ * Actualiza los datos del usuario o perfil actual (PUT).
+ * @param {Object} data - Datos a actualizar (email, profile.nombre, etc.)
+ */
+export const updateProfile = async (data) => {
+    const response = await api.put('users/me/', data);
+    return response.data;
+};
+
+/**
+ * Elimina la cuenta del usuario actual de forma permanente (DELETE).
+ */
+export const deleteAccount = async () => {
+    const response = await api.delete('users/me/');
+    return response.data;
+};
